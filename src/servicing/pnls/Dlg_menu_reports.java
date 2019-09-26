@@ -16,6 +16,7 @@ import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import servicing.users.MyUser;
+import servicing.users.User_previlege_others;
 import servicing.users.User_previleges;
 
 /**
@@ -192,6 +193,7 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
         jXLabel1 = new org.jdesktop.swingx.JXLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -242,6 +244,21 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
             }
         });
 
+        jLabel9.setBackground(new java.awt.Color(234, 234, 234));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/barcode (1).png"))); // NOI18N
+        jLabel9.setToolTipText("Barcodes");
+        jLabel9.setOpaque(true);
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel9MouseEntered(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -251,6 +268,8 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -258,7 +277,8 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -299,6 +319,14 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
         label("Barcodes", jLabel8);
     }//GEN-LAST:event_jLabel8MouseEntered
 
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        ok("Services Performance Report", jLabel9);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseEntered
+        label("Services Performance Report", jLabel9);
+    }//GEN-LAST:event_jLabel9MouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +334,7 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private org.jdesktop.swingx.JXLabel jXLabel1;
     // End of variables declaration//GEN-END:variables
@@ -319,13 +348,13 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
 
     private void hover() {
 
-        JLabel[] lbl = {jLabel7, jLabel8};
+        JLabel[] lbl = {jLabel7, jLabel8, jLabel9};
         for (final JLabel l : lbl) {
             l.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     if (l.isEnabled()) {
-                        l.setBackground(new java.awt.Color(129, 159, 0));
+                        l.setBackground(new java.awt.Color(16, 88, 197));
                     }
 
                 }
@@ -333,7 +362,7 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
                 @Override
                 public void mouseExited(MouseEvent e) {
                     if (l.isEnabled()) {
-                          l.setBackground(new java.awt.Color(157, 184, 46));
+                        l.setBackground(new java.awt.Color(96, 188, 219));
                     }
 
                 }
@@ -351,15 +380,25 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
 
     private void set_previledge() {
         String where = " where user_id='" + MyUser.getUser_id() + "' order by previledge asc";
+        String where2 = " where user_id='" + MyUser.getUser_id() + "' and name like '" + "Services Performance Report - (View)" + "' ";
         List<User_previleges.to_user_previleges> datas = User_previleges.ret_data(where);
+
+        List<User_previlege_others.to_user_previlege_others> others = User_previlege_others.ret_data(where2);
 
         for (User_previleges.to_user_previleges to : datas) {
 
             if (to.previledge.equalsIgnoreCase("Services Report")) {
                 jLabel7.setEnabled(true);
-                jLabel7.setBackground(new java.awt.Color(157, 184, 46));
+                jLabel7.setBackground(new java.awt.Color(96, 188, 219));
             }
 
+        }
+
+        for (User_previlege_others.to_user_previlege_others to : others) {
+            if (to.name.equalsIgnoreCase("Services Performance Report - (View)")) {
+                jLabel9.setEnabled(true);
+                jLabel9.setBackground(new java.awt.Color(96, 188, 219));
+            }
         }
     }
 
@@ -374,14 +413,14 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
 
     private void init_key() {
         KeyMapping.mapKeyWIFW(getSurface(),
-                KeyEvent.VK_ESCAPE, new KeyAction() {
+                              KeyEvent.VK_ESCAPE, new KeyAction() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                          @Override
+                          public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                disposed();
-            }
-        });
+                              disposed();
+                          }
+                      });
     }
     // </editor-fold>
 

@@ -285,11 +285,13 @@ public class Srpt_charges {
         public void setLocation_id(String location_id) {
             this.location_id = location_id;
         }
-
     }
+    
+    
 
     public static void main(String[] args) {
 
+        
         System.setProperty("pool_db", "db_algorithm");
         String where = " order by id desc limit 30";
         List<field> datas = Srpt_charges.ret_data(where);

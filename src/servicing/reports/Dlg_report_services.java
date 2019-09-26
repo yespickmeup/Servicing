@@ -933,7 +933,7 @@ public class Dlg_report_services extends javax.swing.JDialog {
     private void myInit() {
 //        System.setProperty("pool_db", "db_algorithm");
 //        System.setProperty("pool_host", "192.168.1.51");
-        System.out.println("Running...");
+//        System.out.println("Running...");
         init_key();
         Date d = DateUtils1.add_day(new Date(), -30);
         dp_from.setDate(d);
@@ -1019,14 +1019,14 @@ public class Dlg_report_services extends javax.swing.JDialog {
 
     private void init_key() {
         KeyMapping.mapKeyWIFW(getSurface(),
-                KeyEvent.VK_ESCAPE, new KeyAction() {
+                              KeyEvent.VK_ESCAPE, new KeyAction() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                          @Override
+                          public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                disposed();
-            }
-        });
+                              disposed();
+                          }
+                      });
     }
     // </editor-fold>
 
@@ -1116,7 +1116,7 @@ public class Dlg_report_services extends javax.swing.JDialog {
                 if (jCheckBox15.isSelected()) {
                     statuses = 4;
                 }
-                
+
                 System.out.println(where);
                 List<Srpt_services.field> datas = Srpt_services.ret_data(where, statuses);
 //                System.out.println("datas: " + datas.size());
@@ -1274,7 +1274,7 @@ public class Dlg_report_services extends javax.swing.JDialog {
         Object[][] obj = new Object[service_by_list.size()][1];
         int i = 0;
         for (My_services_crews.to_my_services_crews to : service_by_list) {
-            obj[i][0] = " "+to.fname + " " + to.mi + " " + to.lname;
+            obj[i][0] = " " + to.fname + " " + to.mi + " " + to.lname;
             i++;
         }
         JLabel[] labels = {};

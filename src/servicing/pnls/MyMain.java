@@ -5,7 +5,6 @@
  */
 package servicing.pnls;
 
-
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Window;
@@ -57,6 +56,10 @@ public class MyMain {
             }
 
             System.out.println(home);
+            System.setProperty("pool_port", prop.getProperty("pool_port", "3306"));
+            System.setProperty("pool_user", prop.getProperty("pool_user", "root"));
+            System.setProperty("pool_password", prop.getProperty("pool_password", "password"));
+            System.setProperty("pool_db", prop.getProperty("pool_db", "db_algorithm"));
             System.setProperty("pool_host", prop.getProperty("pool_host", "localhost"));
             System.out.println("local_ip: " + System.getProperty("local_ip"));
             System.out.println("pool_host: " + System.getProperty("pool_host"));
@@ -131,10 +134,6 @@ public class MyMain {
             System.setProperty("license_code", prop.getProperty("license_code", ""));
             System.setProperty("version", prop.getProperty("version", ""));
 
-            System.setProperty("pool_port", prop.getProperty("pool_port", "3306"));
-            System.setProperty("pool_user", prop.getProperty("pool_user", "root"));
-            System.setProperty("pool_password", prop.getProperty("pool_password", "password"));
-            System.setProperty("pool_db", prop.getProperty("pool_db", "db_algorithm"));
             System.setProperty("cloud_host", prop.getProperty("cloud_host", "128.199.80.53"));
             System.setProperty("cloud_port", prop.getProperty("cloud_port", "3306"));
             System.setProperty("cloud_user", prop.getProperty("cloud_user", "root"));
@@ -179,7 +178,7 @@ public class MyMain {
     private void start() {
         Application.setSystemLookAndFeel();
         Pnl_Dashboard pnl = new Pnl_Dashboard();
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/servicing/imgs/synapse.png"));
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/servicing/imgs/icon.png"));
         pnl.setIconImage(image);
         Toolkit tk = Toolkit.getDefaultToolkit();
         int xSize = ((int) tk.getScreenSize().

@@ -33,7 +33,7 @@ public class MyConnection {
             String host = System.getProperty("pool_host", "localhost:3306");
             String user = System.getProperty("pool_user", "root");
             String password = System.getProperty("pool_password", "password");
-            String db_name = System.getProperty("mydb", "db_algorithm");
+            String db_name = System.getProperty("pool_db", "db_algorithm");
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://" + host + "/" + db_name;
            

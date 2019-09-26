@@ -286,7 +286,7 @@ public class Dlg_menu extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setBackground(new java.awt.Color(129, 159, 0));
+        jLabel7.setBackground(new java.awt.Color(16, 88, 197));
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -399,7 +399,7 @@ public class Dlg_menu extends javax.swing.JDialog {
             l.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    l.setBackground(new java.awt.Color(129, 159, 0));
+                                       l.setBackground(new java.awt.Color(16, 88, 197));
                     l.setForeground(new java.awt.Color(255, 255, 255));
                 }
 

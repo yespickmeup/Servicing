@@ -2685,10 +2685,11 @@ public class Dlg_services extends javax.swing.JDialog {
             int id = 0;
             String where = " where location_id='" + MyUser.getLocation_id() + "' ";
             String transaction_no = My_services.increment_id(where);
-            where = " where transaction_no='" + transaction_no + "' ";
+            where = " where transaction_no='" + transaction_no + "' and location_id='" + MyUser.getLocation_id() + "' ";
             List<My_services.to_my_services> datas = My_services.ret_data(where);
             if (!datas.isEmpty()) {
-                save_my_services();
+                Alert.set(0, "Transaction No exists!");
+//                save_my_services();
                 return;
             }
             Field.Combo serv_by = (Field.Combo) tf_serviced_by;
@@ -2731,10 +2732,24 @@ public class Dlg_services extends javax.swing.JDialog {
             List<My_services_problems_customers.to_my_services_problems_customers> problems = tbl_my_services_problems_customers_ALM;
             List<My_services_item_replacements_customers.to_my_services_item_replacements_customers> replacements = tbl_my_services_item_replacements_customers_ALM;
             List<to_my_services_others_customers> others = tbl_my_services_others_customers_ALM;
-            My_services.add_my_services(service, descriptions, problems, replacements, others);
-            data_cols();
-            Alert.set(1, "");
-            clear_my_services();
+            Window p = (Window) this;
+            Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+            nd.setTitle("");
+            nd.do_pass();
+            nd.setCallback(new Dlg_confirm_action.Callback() {
+
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                    closeDialog.ok();
+                    My_services.add_my_services(service, descriptions, problems, replacements, others);
+                    data_cols();
+                    Alert.set(1, "");
+                    clear_my_services();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+
         } else {
             if (my_account_control == 2 || my_account_control == 3) {
                 return;
@@ -2788,10 +2803,22 @@ public class Dlg_services extends javax.swing.JDialog {
             String location = service.location;
             String location_id = service.location_id;
             My_services.to_my_services service2 = new My_services.to_my_services(id, transaction_no, service_slip_no, serviced_by, service_by_id, department_manager, department_manager_id, department, department_id, customer_name, customer_id, qty, unit, description, problem, date_received, date_assigned, date_released, added_by, remarks, status, service_type, service_type_id, amount, cashier, cashier_id, selected, user_id, user_screen_name, customer_contact_no, branch, branch_id, location, location_id);
-            My_services.edit_my_services(service2);
-            data_cols();
-            Alert.set(2, "");
-            clear_my_services();
+            Window p = (Window) this;
+            Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
+            nd.setTitle("");
+            nd.setCallback(new Dlg_confirm_action.Callback() {
+                @Override
+                public void ok(CloseDialog closeDialog, Dlg_confirm_action.OutputData data) {
+                    closeDialog.ok();
+                    My_services.edit_my_services(service2);
+                    data_cols();
+                    Alert.set(2, "");
+                    clear_my_services();
+                }
+            });
+            nd.setLocationRelativeTo(this);
+            nd.setVisible(true);
+
         }
 
     }
@@ -3428,7 +3455,7 @@ public class Dlg_services extends javax.swing.JDialog {
                 My_services_problems_customers.add_my_services_problems_customers(prob);
                 ret_my_services_customers_problems();
                 Alert.set(1, "");
-                
+
             }
             new_my_services_problems_customers();
         } else {
@@ -3699,7 +3726,6 @@ public class Dlg_services extends javax.swing.JDialog {
             i++;
         }
 
-        
         JLabel[] labels = {};
         int w1 = tf_contact_no7.getWidth();
         int[] tbl_widths_customers = {40, tf_contact_no8.getWidth()};
