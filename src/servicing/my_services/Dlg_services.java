@@ -2156,14 +2156,14 @@ public class Dlg_services extends javax.swing.JDialog {
 
     private void init_key() {
         KeyMapping.mapKeyWIFW(getSurface(),
-                KeyEvent.VK_ESCAPE, new KeyAction() {
+                              KeyEvent.VK_ESCAPE, new KeyAction() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                          @Override
+                          public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                disposed();
-            }
-        });
+                              disposed();
+                          }
+                      });
     }
     // </editor-fold>
 
@@ -2561,6 +2561,11 @@ public class Dlg_services extends javax.swing.JDialog {
         enables(false);
         String where = "";
         String search = jTextField12.getText();
+        if (search.isEmpty()) {
+            tbl_my_services_ALM.clear();
+            clear_my_services();
+            return;
+        }
         if (jCheckBox3.isSelected()) {
             where = " where customer_name like '%" + search + "%' ";
         }
@@ -2576,7 +2581,6 @@ public class Dlg_services extends javax.swing.JDialog {
         if (jCheckBox14.isSelected()) {
             where = " where service_slip_no like '%" + search + "%' ";
         }
-
         String trans_no = "";
         if (cb_barcode.isSelected()) {
             String w = " where barcode ='" + jTextField12.getText() + "' ";

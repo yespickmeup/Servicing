@@ -731,7 +731,6 @@ public class Dlg_report_charges extends javax.swing.JDialog {
         my_branch_id = to.branch_id;
         my_location = to.location;
         my_location_id = "" + to.id;
-
     }
 
     public void do_pass() {
