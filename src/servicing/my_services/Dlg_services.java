@@ -2167,6 +2167,7 @@ public class Dlg_services extends javax.swing.JDialog {
     }
     // </editor-fold>
 
+    
     //<editor-fold defaultstate="collapsed" desc=" Combos ">
     List<My_services_departments.to_my_services_departments> department_list = new ArrayList();
 
@@ -2564,6 +2565,11 @@ public class Dlg_services extends javax.swing.JDialog {
         if (search.isEmpty()) {
             tbl_my_services_ALM.clear();
             clear_my_services();
+            jProgressBar1.setString("Finished...");
+            jProgressBar1.setIndeterminate(false);
+            jTextField12.grabFocus();
+            enables(true);
+            jTextField12.grabFocus();
             return;
         }
         if (jCheckBox3.isSelected()) {
@@ -4466,7 +4472,6 @@ public class Dlg_services extends javax.swing.JDialog {
             if (to.selected == true) {
                 codes.add(to.barcode);
             }
-
         }
         Window p = (Window) this;
         Dlg_my_services_print_barcodes nd = Dlg_my_services_print_barcodes.create(p, true);
