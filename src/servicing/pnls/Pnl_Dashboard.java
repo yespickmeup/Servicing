@@ -169,6 +169,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(16, 88, 197));
         jLabel8.setText("Username:");
 
+        tf_username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tf_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_usernameActionPerformed(evt);
@@ -180,6 +181,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(16, 88, 197));
         jLabel12.setText("Password:");
 
+        tf_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         tf_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_passwordActionPerformed(evt);
@@ -689,6 +691,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                     t_services_transactions();
                 }
 
+                if (data.stmt.equals("Stock Transfer")) {
+                    t_services_transactions();
+                }
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" maintenance ">
                 if (data.stmt.equals("Service Departments")) {
@@ -710,7 +715,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                     r_barcode();
                 }
                 if (data.stmt.equals("Services Performance Report")) {
-                  r_services_performance();
+                    r_services_performance();
                 }
 
                 //</editor-fold>
@@ -759,6 +764,13 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         dtc.do_pass(account);
         MyFrame.set(dtc.getSurface(), jPanel1, "Services");
 
+    }
+
+    private void t_stock_transfers() {
+
+        Dlg_services dtc = new Dlg_services();
+
+        MyFrame.set(dtc.getSurface(), jPanel1, "Stock Transfers");
     }
 
     private void m_departments() {

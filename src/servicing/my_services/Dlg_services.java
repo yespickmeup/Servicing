@@ -9,6 +9,7 @@ import servicing.reports.Dlg_my_services_print_barcodes;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -20,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
@@ -172,6 +174,12 @@ public class Dlg_services extends javax.swing.JDialog {
         }
 
         Dlg_services dialog = Dlg_services.create(new javax.swing.JFrame(), true);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xSize = ((int) tk.getScreenSize().
+                getWidth());
+        int ySize = ((int) tk.getScreenSize().
+                getHeight());
+        dialog.setSize(xSize, ySize);
         dialog.setVisible(true);
 
     }
@@ -252,6 +260,10 @@ public class Dlg_services extends javax.swing.JDialog {
         tf_contact_no10 = new Field.Input();
         jLabel60 = new javax.swing.JLabel();
         tf_contact_no11 = new Field.Input();
+        jLabel8 = new javax.swing.JLabel();
+        tf_to_branch = new Field.Combo();
+        jLabel17 = new javax.swing.JLabel();
+        tf_to_location = new Field.Combo();
         jPanel9 = new javax.swing.JPanel();
         jLabel61 = new javax.swing.JLabel();
         tf_contact_no12 = new Field.Input();
@@ -340,6 +352,7 @@ public class Dlg_services extends javax.swing.JDialog {
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel3 = new javax.swing.JLabel();
         jTextField12 = new Field.Search();
+        jButton1 = new Button.Default();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -483,7 +496,7 @@ public class Dlg_services extends javax.swing.JDialog {
                     .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -586,7 +599,7 @@ public class Dlg_services extends javax.swing.JDialog {
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -686,6 +699,40 @@ public class Dlg_services extends javax.swing.JDialog {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("Branch:");
+
+        tf_to_branch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_to_branch.setFocusable(false);
+        tf_to_branch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_to_branchMouseClicked(evt);
+            }
+        });
+        tf_to_branch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_to_branchActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel17.setText("Location:");
+
+        tf_to_location.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_to_location.setFocusable(false);
+        tf_to_location.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_to_locationMouseClicked(evt);
+            }
+        });
+        tf_to_location.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_to_locationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -718,13 +765,29 @@ public class Dlg_services extends javax.swing.JDialog {
                                 .addGap(5, 5, 5)
                                 .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_contact_no9)))))
+                                .addComponent(tf_contact_no9))))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_to_location)
+                            .addComponent(tf_to_branch))))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_to_branch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_to_location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_contact_no7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -745,7 +808,7 @@ public class Dlg_services extends javax.swing.JDialog {
                     .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -866,7 +929,7 @@ public class Dlg_services extends javax.swing.JDialog {
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -938,7 +1001,7 @@ public class Dlg_services extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1592,6 +1655,13 @@ public class Dlg_services extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1599,7 +1669,7 @@ public class Dlg_services extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1608,14 +1678,19 @@ public class Dlg_services extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField12))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jTextField12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1909,6 +1984,26 @@ public class Dlg_services extends javax.swing.JDialog {
         select_my_services_barcodes_customers();
     }//GEN-LAST:event_tbl_my_services_barcodes_customersMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        data_cols();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tf_to_branchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_to_branchMouseClicked
+        init_branch_locations();
+    }//GEN-LAST:event_tf_to_branchMouseClicked
+
+    private void tf_to_branchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_to_branchActionPerformed
+        init_branch_locations();
+    }//GEN-LAST:event_tf_to_branchActionPerformed
+
+    private void tf_to_locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_to_locationActionPerformed
+        init_branch_locations2();
+    }//GEN-LAST:event_tf_to_locationActionPerformed
+
+    private void tf_to_locationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_to_locationMouseClicked
+        init_branch_locations2();
+    }//GEN-LAST:event_tf_to_locationMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1923,6 +2018,7 @@ public class Dlg_services extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser dp_received;
     private com.toedter.calendar.JDateChooser dp_released;
     private com.toedter.calendar.JDateChooser dp_to;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
@@ -1960,6 +2056,7 @@ public class Dlg_services extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1988,6 +2085,7 @@ public class Dlg_services extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -2044,12 +2142,19 @@ public class Dlg_services extends javax.swing.JDialog {
     private javax.swing.JTextField tf_service_type1;
     private javax.swing.JTextField tf_service_type_id;
     private javax.swing.JTextField tf_serviced_by;
+    private javax.swing.JTextField tf_to_branch;
+    private javax.swing.JTextField tf_to_location;
     private javax.swing.JTextField tf_transaction_no;
     // End of variables declaration//GEN-END:variables
     private void myInit() {
+
+        System.setProperty("pool_host", "localhost");
+        System.setProperty("pool_db", "db_algorithm");
+        MyUser.setUser_id("1");
+
         init_key();
         set_default_branch();
-//        MyUser.setLocation_id("14");
+//       
         init_transaction_no();
 
 //        jPanel2.setVisible(false);
@@ -2058,7 +2163,7 @@ public class Dlg_services extends javax.swing.JDialog {
         tf_department_id2.setVisible(false);
 
         //test
-        do_pass(4);
+        do_pass(1);
     }
     String location_ids = "";
 
@@ -2066,7 +2171,12 @@ public class Dlg_services extends javax.swing.JDialog {
 
         Branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         location_ids = "" + to.id;
+        Field.Combo f_br = (Field.Combo) tf_to_branch;
+        f_br.setText(to.branch);
+        f_br.setId(to.branch_id);
 
+        String where = " order by branch,location asc ";
+        branch_location_list = S1_branch_locations.ret_location_where(where);
     }
 
     int my_account_control = 0;
@@ -2167,7 +2277,6 @@ public class Dlg_services extends javax.swing.JDialog {
     }
     // </editor-fold>
 
-    
     //<editor-fold defaultstate="collapsed" desc=" Combos ">
     List<My_services_departments.to_my_services_departments> department_list = new ArrayList();
 
@@ -3721,35 +3830,45 @@ public class Dlg_services extends javax.swing.JDialog {
     int item_selected = -1;
 
     private void init_inventory() {
+        Field.Combo loc = (Field.Combo) tf_to_location;
+        if (loc.getId().isEmpty() || loc.getText().isEmpty()) {
+            Alert.set(0, "Please select a location!");
+            return;
+        }
         String search = tf_contact_no7.getText();
-        String where = " where  barcode like '" + search + "' and location_id='" + location_ids + "' "
-                + " or description like '%" + search + "%' and location_id='" + location_ids + "' "
-                + " or main_barcode like '" + search + "' and location_id='" + location_ids + "' "
+        String where = " where  barcode like '" + search + "' and location_id='" + loc.getId() + "' "
+                + " or description like '%" + search + "%' and location_id='" + loc.getId() + "' "
+                + " or main_barcode like '" + search + "' and location_id='" + loc.getId() + "' "
                 + "  order by description asc";
         inventory_list.clear();
         inventory_list = Inventory.ret_data4(where);
-        Object[][] obj = new Object[inventory_list.size()][2];
+        Object[][] obj = new Object[inventory_list.size()][3];
         int i = 0;
         for (Inventory.to_inventory to : inventory_list) {
-            obj[i][0] = " " + to.barcodes;
-            obj[i][1] = " " + to.description;
+            obj[i][0] = " " + to.product_qty;
+            obj[i][1] = " " + to.barcodes;
+            obj[i][2] = " " + to.description;
             i++;
         }
 
         JLabel[] labels = {};
         int w1 = tf_contact_no7.getWidth();
-        int[] tbl_widths_customers = {40, tf_contact_no8.getWidth()};
+        int[] tbl_widths_customers = {50, 150, tf_contact_no8.getWidth() + 200};
         int width = 0;
         for (int w : tbl_widths_customers) {
             width += w;
         }
-        String[] col_names = {"Code", "Description"};
+        String[] col_names = {"Qty", "Code", "Description"};
         TableRenderer tr = new TableRenderer();
         TableRenderer.setPopup2(tf_contact_no7, obj, labels, tbl_widths_customers, col_names, width);
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
                 Inventory.to_inventory to = inventory_list.get(data.selected_row);
+                if (to.product_qty < 1) {
+                    Alert.set(0, "Insufficient stock/s");
+                    return;
+                }
                 item_selected = data.selected_row;
                 tf_contact_no7.setText(to.barcodes);
                 tf_contact_no8.setText(to.description);
@@ -4486,4 +4605,73 @@ public class Dlg_services extends javax.swing.JDialog {
         nd.setLocationRelativeTo(this);
         nd.setVisible(true);
     }
+
+    List<S1_branch_locations.to_branch_locations> branch_location_list3 = new ArrayList();
+
+    private void init_branch_locations() {
+        if (!tf_to_branch.isEnabled()) {
+            return;
+        }
+        Object[][] obj = new Object[branch_location_list3.size()][2];
+        int i = 0;
+        for (S1_branch_locations.to_branch_locations to : branch_location_list3) {
+            obj[i][0] = " " + to.branch;
+            obj[i][1] = " " + to.location;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {120, 90};
+        int width = 0;
+        String[] col_names = {"Branch", "Location"};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup(tf_to_branch, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                S1_branch_locations.to_branch_locations to = branch_location_list3.get(data.selected_row);
+                Field.Combo br = (Field.Combo) tf_to_branch;
+
+                br.setText("" + to.branch);
+                br.setId("" + to.branch_id);
+
+            }
+        });
+    }
+
+    List<S1_branch_locations.to_branch_locations> branch_location_list = new ArrayList();
+
+    private void init_branch_locations2() {
+
+        Field.Combo br = (Field.Combo) tf_to_branch;
+        Field.Combo loc = (Field.Combo) tf_to_location;
+
+        branch_location_list.clear();
+        String where = " where branch_id='" + br.getId() + "' order by location asc ";
+        branch_location_list = S1_branch_locations.ret_location_where(where);
+        Object[][] obj = new Object[branch_location_list.size()][2];
+        int i = 0;
+        for (S1_branch_locations.to_branch_locations to : branch_location_list) {
+            obj[i][0] = " " + to.id;
+            obj[i][1] = " " + to.location;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {0, tf_to_location.getWidth()};
+        int width = 0;
+        String[] col_names = {"Code", "Location"};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.
+                setPopup(tf_to_location, obj, labels, tbl_widths_customers, col_names);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                S1_branch_locations.to_branch_locations to = branch_location_list.
+                        get(data.selected_row);
+
+                loc.setText("" + to.location);
+                loc.setId("" + to.id);
+            }
+        });
+    }
+
 }

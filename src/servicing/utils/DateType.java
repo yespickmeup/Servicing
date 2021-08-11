@@ -24,6 +24,8 @@ public class DateType {
     public static SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss aa");
     public static SimpleDateFormat time2 = new SimpleDateFormat("HH:mm aa");
+    public static SimpleDateFormat time4 = new SimpleDateFormat("HH:mm:ss");
+    public static SimpleDateFormat time5 = new SimpleDateFormat("hh:mm aa");
     public static SimpleDateFormat sf1 = new SimpleDateFormat("EEE, MMM dd,yyyy");
     public static SimpleDateFormat d = new SimpleDateFormat("dd");
     public static SimpleDateFormat m = new SimpleDateFormat("MMMMMMMMMMM");
@@ -379,4 +381,21 @@ public class DateType {
         }
         return day;
     }
+
+    public static String convert_dash_date4(String datetime) {
+        String date = "";
+        Date d = new Date();
+        if (datetime.isEmpty()) {
+            datetime = DateType.datetime.format(new Date());
+        }
+        try {
+            d = DateType.sf.parse(datetime);
+        } catch (ParseException ex) {
+            Logger.getLogger(DateType.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        date = DateType.sf.format(d);
+        return date;
+    }
+
 }

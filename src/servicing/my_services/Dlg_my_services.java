@@ -2332,6 +2332,10 @@ public class Dlg_my_services extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void myInit() {
+
+//        System.setProperty("pool_host", "localhost");
+//        System.setProperty("pool_db", "db_algorithm");
+
         init_key();
         init_tbl_my_services();
         focus();
@@ -2495,14 +2499,14 @@ public class Dlg_my_services extends javax.swing.JDialog {
 
     private void init_key() {
         KeyMapping.mapKeyWIFW(getSurface(),
-                KeyEvent.VK_ESCAPE, new KeyAction() {
+                              KeyEvent.VK_ESCAPE, new KeyAction() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                          @Override
+                          public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                disposed();
-            }
-        });
+                              disposed();
+                          }
+                      });
     }
     // </editor-fold>
 
@@ -3826,7 +3830,6 @@ public class Dlg_my_services extends javax.swing.JDialog {
 //        List<S1_my_services_problems.to_my_services_problems> datas = My_services_problems_customers.ret_data(where);
 //
 //        loadData_my_services_problems(datas);
-
     }
 
     private void add_prob() {
