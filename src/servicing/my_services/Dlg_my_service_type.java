@@ -5,7 +5,6 @@
  */
 package servicing.my_services;
 
-
 import servicing.my_services.S1_my_service_type.to_my_service_type;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
@@ -20,7 +19,6 @@ import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
-import servicing.branch_locations.Branch_locations;
 import synsoftech.fields.Button;
 
 /**
@@ -415,7 +413,7 @@ public class Dlg_my_service_type extends javax.swing.JDialog {
     String my_location_id = "";
 
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = Branch_locations.ret_data();
+        servicing.branch_locations.S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         my_branch = to.branch;
         my_branch_id = to.branch_id;
         my_location = to.location;
@@ -435,12 +433,12 @@ public class Dlg_my_service_type extends javax.swing.JDialog {
         KeyMapping.mapKeyWIFW(getSurface(),
                               KeyEvent.VK_ESCAPE, new KeyAction() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                          @Override
+                          public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                disposed();
-            }
-        });
+                              disposed();
+                          }
+                      });
     }
     // </editor-fold>
     private ArrayListModel tbl_my_service_type_ALM;
@@ -517,7 +515,7 @@ public class Dlg_my_service_type extends javax.swing.JDialog {
     private void add_my_service_type() {
         int id = -1;
         String service = tf_service.getText();
-        to_my_service_type to = new to_my_service_type(id, service,my_branch,my_branch_id,my_location,my_location_id);
+        to_my_service_type to = new to_my_service_type(id, service, my_branch, my_branch_id, my_location, my_location_id);
         S1_my_service_type.add_my_service_type(to);
         data_cols();
         clear_my_service_type();
@@ -540,7 +538,7 @@ public class Dlg_my_service_type extends javax.swing.JDialog {
         to_my_service_type to = (to_my_service_type) tbl_my_service_type_ALM.get(tbl_my_service_type.convertRowIndexToModel(row));
         int id = to.id;
         String service = tf_service.getText();
-        to_my_service_type to1 = new to_my_service_type(id, service,to.branch,to.branch_id,to.location,to.location_id);
+        to_my_service_type to1 = new to_my_service_type(id, service, to.branch, to.branch_id, to.location, to.location_id);
         S1_my_service_type.edit_my_service_type(to1);
         data_cols();
         clear_my_service_type();

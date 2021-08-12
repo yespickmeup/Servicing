@@ -5,14 +5,12 @@
  */
 package servicing.my_services;
 
-
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import servicing.branch_locations.S1_branch_locations.to_branch_locations;
 
-import servicing.branch_locations.Branch_locations.to_branch_locations;
 import servicing.utils.MyConnection;
 
 /**

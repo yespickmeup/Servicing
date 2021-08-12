@@ -737,7 +737,7 @@ public class Dlg_stock_transfer_check_upload extends javax.swing.JDialog {
 
     
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
+        S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         Field.Combo br = (Field.Combo) tf_from_branch;
         Field.Combo lo = (Field.Combo) tf_from_location;
         br.setText(to.branch);

@@ -26,6 +26,8 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
 import servicing.branch_locations.Branch_locations;
+import servicing.branch_locations.S1_branch_locations;
+import servicing.branch_locations.S4_branch_locations;
 import servicing.my_services.My_services_crews;
 import servicing.my_services.My_services_departments;
 import servicing.my_services.S1_my_service_type;
@@ -951,7 +953,7 @@ public class Dlg_report_services extends javax.swing.JDialog {
         tf_from_location.setVisible(false);
 
         String where = " order by branch,location asc ";
-        branch_location_list2 = Branch_locations.ret_location_where(where);
+        branch_location_list2 = servicing.my_services.S1_branch_locations.ret_location_where(where);
     }
 
     String my_branch = "";
@@ -960,7 +962,7 @@ public class Dlg_report_services extends javax.swing.JDialog {
     String my_location_id = "";
 
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = Branch_locations.ret_data();
+        S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         my_branch = to.branch;
         my_branch_id = to.branch_id;
         my_location = to.location;
@@ -972,13 +974,13 @@ public class Dlg_report_services extends javax.swing.JDialog {
         tf_from_location_id.setText(my_location_id);
     }
 
-    List<Branch_locations.to_branch_locations> branch_location_list2 = new ArrayList();
+    List<servicing.my_services.S1_branch_locations.to_branch_locations> branch_location_list2 = new ArrayList();
 
     private void init_branch_locations2() {
 
         Object[][] obj = new Object[branch_location_list2.size()][2];
         int i = 0;
-        for (Branch_locations.to_branch_locations to : branch_location_list2) {
+        for (servicing.my_services.S1_branch_locations.to_branch_locations to : branch_location_list2) {
             obj[i][0] = " " + to.branch;
             obj[i][1] = " " + to.location;
             i++;
@@ -992,7 +994,7 @@ public class Dlg_report_services extends javax.swing.JDialog {
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
-                Branch_locations.to_branch_locations to = branch_location_list2.get(data.selected_row);
+                servicing.my_services.S1_branch_locations.to_branch_locations to = branch_location_list2.get(data.selected_row);
                 tf_from_branch.setText("" + to.branch);
                 tf_from_branch_id.setText("" + to.branch_id);
 

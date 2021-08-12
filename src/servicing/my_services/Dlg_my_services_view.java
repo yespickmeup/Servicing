@@ -5,7 +5,6 @@
  */
 package servicing.my_services;
 
-
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.Component;
@@ -29,7 +28,7 @@ import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.KeyMapping;
 import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
-import servicing.branch_locations.Branch_locations;
+
 import servicing.utils.DateType;
 import servicing.utils.DateUtils1;
 import servicing.utils.TableRenderer;
@@ -1259,7 +1258,7 @@ public class Dlg_my_services_view extends javax.swing.JDialog {
         init_tbl_my_services();
         set_default_branch();
         String where = " order by branch,location asc ";
-        branch_location_list2 = Branch_locations.ret_location_where(where);
+        branch_location_list2 = servicing.branch_locations.S1_branch_locations.ret_location_where(where);
 
         jLabel49.setVisible(false);
         jLabel50.setVisible(false);
@@ -1269,13 +1268,13 @@ public class Dlg_my_services_view extends javax.swing.JDialog {
         tf_from_location_id.setVisible(false);
     }
 
-    List<Branch_locations.to_branch_locations> branch_location_list2 = new ArrayList();
+    List< servicing.branch_locations.S1_branch_locations.to_branch_locations> branch_location_list2 = new ArrayList();
 
     private void init_branch_locations2() {
 
         Object[][] obj = new Object[branch_location_list2.size()][2];
         int i = 0;
-        for (Branch_locations.to_branch_locations to : branch_location_list2) {
+        for (servicing.branch_locations.S1_branch_locations.to_branch_locations to : branch_location_list2) {
             obj[i][0] = " " + to.branch;
             obj[i][1] = " " + to.location;
             i++;
@@ -1289,7 +1288,7 @@ public class Dlg_my_services_view extends javax.swing.JDialog {
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
-                Branch_locations.to_branch_locations to = branch_location_list2.get(data.selected_row);
+                servicing.branch_locations.S1_branch_locations.to_branch_locations to = branch_location_list2.get(data.selected_row);
                 tf_from_branch.setText("" + to.branch);
                 tf_from_branch_id.setText("" + to.branch_id);
 
@@ -1305,7 +1304,7 @@ public class Dlg_my_services_view extends javax.swing.JDialog {
     String my_location_id = "";
 
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = Branch_locations.ret_data();
+        servicing.branch_locations.S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         my_branch = to.branch;
         my_branch_id = to.branch_id;
         my_location = to.location;
@@ -1336,12 +1335,12 @@ public class Dlg_my_services_view extends javax.swing.JDialog {
         KeyMapping.mapKeyWIFW(getSurface(),
                               KeyEvent.VK_ESCAPE, new KeyAction() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                          @Override
+                          public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                disposed();
-            }
-        });
+                              disposed();
+                          }
+                      });
     }
     // </editor-fold>
 

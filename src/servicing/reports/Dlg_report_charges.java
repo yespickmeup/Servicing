@@ -23,11 +23,11 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
-import servicing.branch_locations.Branch_locations;
+import servicing.branch_locations.S1_branch_locations;
+import servicing.branch_locations.S4_branch_locations;
 import servicing.my_services.My_services_crews;
 import servicing.my_services.My_services_departments;
 import servicing.my_services.S1_my_service_type;
-import servicing.users.MyUser;
 import servicing.utils.DateType;
 import servicing.utils.TableRenderer;
 
@@ -717,7 +717,7 @@ public class Dlg_report_charges extends javax.swing.JDialog {
         tf_department_id1.setVisible(false);
         tf_department_id2.setVisible(false);
         tf_service_type_id1.setVisible(false);
-        
+
     }
 
     String my_branch = "";
@@ -726,7 +726,7 @@ public class Dlg_report_charges extends javax.swing.JDialog {
     String my_location_id = "";
 
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = Branch_locations.ret_data();
+        S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         my_branch = to.branch;
         my_branch_id = to.branch_id;
         my_location = to.location;
@@ -811,7 +811,7 @@ public class Dlg_report_charges extends javax.swing.JDialog {
                 }
 
                 where = where + " order by mc.service_by_id asc ";
-                System.out.println("where: "+where);
+                System.out.println("where: " + where);
                 List<Srpt_charges.field> datas = Srpt_charges.ret_data(where);
                 String business_name = System.getProperty("business_name", "Algorithm Computer Services");
                 String address = System.getProperty("address", "Daro, Dumaguete City");

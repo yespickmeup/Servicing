@@ -2335,7 +2335,6 @@ public class Dlg_my_services extends javax.swing.JDialog {
 
 //        System.setProperty("pool_host", "localhost");
 //        System.setProperty("pool_db", "db_algorithm");
-
         init_key();
         init_tbl_my_services();
         focus();
@@ -2353,7 +2352,7 @@ public class Dlg_my_services extends javax.swing.JDialog {
         dp_from.setDate(d);
 
         String where = " order by branch,location asc ";
-        branch_location_list2 = Branch_locations.ret_location_where(where);
+        branch_location_list2 = S1_branch_locations.ret_location_where(where);
 
         jLabel49.setVisible(false);
         jLabel50.setVisible(false);
@@ -2363,13 +2362,13 @@ public class Dlg_my_services extends javax.swing.JDialog {
         tf_from_location_id.setVisible(false);
     }
 
-    List<Branch_locations.to_branch_locations> branch_location_list2 = new ArrayList();
+    List<S1_branch_locations.to_branch_locations> branch_location_list2 = new ArrayList();
 
     private void init_branch_locations2() {
 
         Object[][] obj = new Object[branch_location_list2.size()][2];
         int i = 0;
-        for (Branch_locations.to_branch_locations to : branch_location_list2) {
+        for (S1_branch_locations.to_branch_locations to : branch_location_list2) {
             obj[i][0] = " " + to.branch;
             obj[i][1] = " " + to.location;
             i++;
@@ -2383,7 +2382,7 @@ public class Dlg_my_services extends javax.swing.JDialog {
         tr.setCallback(new TableRenderer.Callback() {
             @Override
             public void ok(TableRenderer.OutputData data) {
-                Branch_locations.to_branch_locations to = branch_location_list2.get(data.selected_row);
+                S1_branch_locations.to_branch_locations to = branch_location_list2.get(data.selected_row);
                 tf_from_branch.setText("" + to.branch);
                 tf_from_branch_id.setText("" + to.branch_id);
 
@@ -2399,7 +2398,7 @@ public class Dlg_my_services extends javax.swing.JDialog {
     String my_location_id = "";
 
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = Branch_locations.ret_data();
+        servicing.branch_locations.S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         my_branch = to.branch;
         my_branch_id = to.branch_id;
         my_location = to.location;

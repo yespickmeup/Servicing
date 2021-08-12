@@ -148,7 +148,7 @@ public class My_services_item_replacements_customers {
         public void setSelling_price(double selling_price) {
             this.selling_price = selling_price;
         }
-        
+
     }
 
     public static void add_data(List<My_services_item_replacements_customers.to_my_services_item_replacements_customers> to_my_services_item_replacements_customers1) {
@@ -500,7 +500,7 @@ public class My_services_item_replacements_customers {
                 to_my_services_item_replacements_customers to = new to_my_services_item_replacements_customers(id, transaction_no, customer_id, customer_name, item_code, barcode, description, qty, selling_price, date_added, user_name, category, category_id, classification, classification_id, sub_classification, sub_classification_id, unit, conversion, item_type, status, supplier, fixed_price, supplier_id, multi_level_pricing, vatable, reorder_level, markup, brand, brand_id, model, model_id, selling_type, branch, branch_code, location, location_id, serial_no, user_id, user_screen_name);
                 datas.add(to);
             }
-            
+
             return datas;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -600,10 +600,15 @@ public class My_services_item_replacements_customers {
             String discount_name = "";
             String discount_customer_name = "";
             String discount_customer_id = "";
-            Inventory_barcodes.to_inventory_barcodes to1 = new Inventory_barcodes.to_inventory_barcodes(id, barcode, description, generic_name, category, category_id, classification, classification_id, sub_classification, sub_classification_id, product_qty, unit, conversion, selling_price, date_added, user_name, item_type, status, supplier, fixed_price, cost, supplier_id, multi_level_pricing, vatable, reorder_level, markup, main_barcode, brand, brand_id, model, model_id, selling_type, branch, branch_code, location, location_id, serial_no, selected_serials, discount, discount_amount, discount_name, discount_customer_name, discount_customer_id, 0, 0);
+            double addtl_amount=0;
+            double wtax=0;
+            int allow_negative_inventory=0;
+            int auto_order=0;
+            int show_to_sales=1;
+            Inventory_barcodes.to_inventory_barcodes to1 = new Inventory_barcodes.to_inventory_barcodes(id, barcode, description, generic_name, category, category_id, classification, classification_id, sub_classification, sub_classification_id, product_qty, unit, conversion, selling_price, date_added, user_name, item_type, status, supplier, fixed_price, cost, supplier_id, multi_level_pricing, vatable, reorder_level, markup, main_barcode, brand, brand_id, model, model_id, selling_type, branch, branch_code, location, location_id, serial_no, selected_serials, discount, discount_amount, discount_name, discount_customer_name, discount_customer_id, addtl_amount, wtax, allow_negative_inventory, auto_order, show_to_sales);
             items.add(to1);
         }
         return items;
     }
-    
+
 }

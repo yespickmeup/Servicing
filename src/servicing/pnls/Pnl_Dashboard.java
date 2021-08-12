@@ -18,7 +18,8 @@ import java.util.List;
 import javax.swing.*;
 import mijzcx.synapse.desk.utils.Application;
 import mijzcx.synapse.desk.utils.CloseDialog;
-import servicing.branch_locations.Branch_locations;
+import servicing.branch_locations.S1_branch_locations;
+
 import servicing.my_services.Dlg_my_service_type;
 import servicing.my_services.Dlg_my_services_crews;
 import servicing.my_services.Dlg_my_services_departments;
@@ -502,7 +503,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
     }
 
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
+        S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         my_branch = to.branch;
         my_branch_id = to.branch_id;
         my_location = to.location;

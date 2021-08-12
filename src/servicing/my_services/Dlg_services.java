@@ -2169,7 +2169,7 @@ public class Dlg_services extends javax.swing.JDialog {
 
     private void set_default_branch() {
 
-        Branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
+        servicing.branch_locations.S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         location_ids = "" + to.id;
         Field.Combo f_br = (Field.Combo) tf_to_branch;
         f_br.setText(to.branch);
@@ -2854,7 +2854,7 @@ public class Dlg_services extends javax.swing.JDialog {
             Window p = (Window) this;
             Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
             nd.setTitle("");
-            nd.do_pass();
+            nd.do_pass("");
             nd.setCallback(new Dlg_confirm_action.Callback() {
 
                 @Override

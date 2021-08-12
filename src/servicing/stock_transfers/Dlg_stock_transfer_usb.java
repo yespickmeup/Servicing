@@ -820,7 +820,7 @@ public class Dlg_stock_transfer_usb extends javax.swing.JDialog {
     }
 
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
+        S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         tf_to_branch.setText(to.branch);
         tf_to_branch_id.setText(to.branch_id);
         tf_to_location.setText(to.location);

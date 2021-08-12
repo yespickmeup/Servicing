@@ -595,7 +595,7 @@ public class Dlg_new_stock_transfer_cloud_transactions extends javax.swing.JDial
 
     static int show_cost = 1;
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
+        S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         Field.Input f_br = (Field.Input) tf_from_branch;
         Field.Input f_lo = (Field.Input) tf_from_location;
         f_br.setText(to.branch);

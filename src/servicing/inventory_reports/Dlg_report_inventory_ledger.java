@@ -44,7 +44,6 @@ import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
-import static jdk.nashorn.internal.runtime.regexp.joni.constants.StackType.POS;
 import mijzcx.synapse.desk.utils.CloseDialog;
 import mijzcx.synapse.desk.utils.FitIn;
 import mijzcx.synapse.desk.utils.JasperUtil;
@@ -58,8 +57,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
-import servicing.branch_locations.Branch_locations;
 import servicing.branch_locations.S1_branch_locations;
+import servicing.branch_locations.S4_branch_locations;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
 
@@ -1084,7 +1083,7 @@ public class Dlg_report_inventory_ledger extends javax.swing.JDialog {
     static int show_cost = 1;
 
     private void set_default_branch() {
-        Branch_locations.to_branch_locations to = Branch_locations.ret_data();
+        S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         Field.Combo lo = (Field.Combo) tf_branch_location;
         lo.setText(to.branch + " - ( " + to.location + " )");
         lo.setId("" + to.id);
