@@ -209,6 +209,7 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/repairing-service.png"))); // NOI18N
         jLabel7.setToolTipText("Services");
+        jLabel7.setEnabled(false);
         jLabel7.setOpaque(true);
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

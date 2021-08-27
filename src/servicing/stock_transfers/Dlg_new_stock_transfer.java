@@ -375,7 +375,7 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POS/img/transactions.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/transactions.png"))); // NOI18N
         jMenuItem1.setText("Finalize Stock Transfer");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -384,7 +384,7 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         });
         jPopupMenu1.add(jMenuItem1);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POS/img/sales_orders.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/sales_orders.png"))); // NOI18N
         jMenuItem2.setText("Create Patch File");
         jPopupMenu1.add(jMenuItem2);
 
@@ -647,8 +647,9 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
 
         jPanel18.setOpaque(false);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POS/icons_menu_maintenance/cloud-computing.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/cloud-computing.png"))); // NOI18N
         jButton4.setText("Cloud Transfers");
+        jButton4.setEnabled(false);
         jButton4.setFocusable(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -656,8 +657,9 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POS/icons_menu_maintenance/cloud-computing (1).png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/cloud-computing (1).png"))); // NOI18N
         jButton8.setText("Upload/Sync");
+        jButton8.setEnabled(false);
         jButton8.setFocusable(false);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -665,8 +667,9 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
             }
         });
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POS/icons_menu_maintenance/cloud-computing (2).png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/cloud-computing (2).png"))); // NOI18N
         jButton9.setText("Check Items");
+        jButton9.setEnabled(false);
         jButton9.setFocusable(false);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -674,8 +677,9 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POS/icons_menu_maintenance/pendrive.png"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/pendrive.png"))); // NOI18N
         jButton10.setText("Usb Transfers");
+        jButton10.setEnabled(false);
         jButton10.setFocusable(false);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2592,15 +2596,15 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                     return " Print";
                 case 9:
                     if (tt.is_uploaded == 0) {
-                        return "/POS/icons4/cloud-storage-uploading-option (3).png";
+                        return "/servicing/imgs/cloud-storage-uploading-option (3).png";
                     } else if (tt.is_uploaded == 2) {
-                        return "/POS/icons4/cloud-storage-uploading-option (4).png";
+                        return "//servicing/imgs/cloud-storage-uploading-option (4).png";
                     } else if (tt.is_uploaded == 3) {
-                        return "/POS/icons4/cloud-storage-uploading-option (6)";
+                        return "/servicing/imgs/cloud-storage-uploading-option (6)";
                     } else if (tt.is_uploaded == 4) {
-                        return "/POS/icons4/cloud-storage-uploading-option (5).png";
+                        return "/servicing/imgs/cloud-storage-uploading-option (5).png";
                     } else {
-                        return "/POS/icons4/cloud-storage-uploading-option (2).png";
+                        return "/servicing/imgs/cloud-storage-uploading-option (2).png";
                     }
                 case 10:
                     return " Print";
@@ -3981,7 +3985,7 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                 if (jCheckBox23.isSelected()) {
                     is_price = 1;
                 }
-                System.out.println("where: " + where);
+//                System.out.println("where: " + where);
                 List<Srpt_transferred_items.field> fields = Srpt_transferred_items.ret_data(where, is_price);
 
                 String business_name = System.getProperty("business_name", "Algorithm Computer Services");

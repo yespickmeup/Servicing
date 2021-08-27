@@ -219,6 +219,7 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/repairing-service.png"))); // NOI18N
         jLabel7.setToolTipText("Services Report");
+        jLabel7.setEnabled(false);
         jLabel7.setOpaque(true);
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -234,6 +235,7 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/barcode (1).png"))); // NOI18N
         jLabel8.setToolTipText("Barcodes");
+        jLabel8.setEnabled(false);
         jLabel8.setOpaque(true);
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -249,6 +251,7 @@ public class Dlg_menu_reports extends javax.swing.JDialog {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/barcode (1).png"))); // NOI18N
         jLabel9.setToolTipText("Barcodes");
+        jLabel9.setEnabled(false);
         jLabel9.setOpaque(true);
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

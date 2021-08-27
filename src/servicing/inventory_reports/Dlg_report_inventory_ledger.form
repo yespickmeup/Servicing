@@ -336,7 +336,7 @@
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/POS/icons3/search19.png"/>
+                  <Image iconType="3" name="/servicing/icons/search19.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Search"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>

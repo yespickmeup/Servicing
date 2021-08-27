@@ -11,7 +11,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/POS/img/transactions.png"/>
+              <Image iconType="3" name="/servicing/icons/transactions.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Finalize Stock Transfer"/>
           </Properties>
@@ -22,7 +22,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/POS/img/sales_orders.png"/>
+              <Image iconType="3" name="/servicing/icons/sales_orders.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Create Patch File"/>
           </Properties>
@@ -775,9 +775,10 @@
                         <Component class="javax.swing.JButton" name="jButton4">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/POS/icons_menu_maintenance/cloud-computing.png"/>
+                              <Image iconType="3" name="/servicing/icons/cloud-computing.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Cloud Transfers"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
@@ -787,9 +788,10 @@
                         <Component class="javax.swing.JButton" name="jButton8">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/POS/icons_menu_maintenance/cloud-computing (1).png"/>
+                              <Image iconType="3" name="/servicing/icons/cloud-computing (1).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Upload/Sync"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
@@ -799,9 +801,10 @@
                         <Component class="javax.swing.JButton" name="jButton9">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/POS/icons_menu_maintenance/cloud-computing (2).png"/>
+                              <Image iconType="3" name="/servicing/icons/cloud-computing (2).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Check Items"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
@@ -811,9 +814,10 @@
                         <Component class="javax.swing.JButton" name="jButton10">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/POS/icons_menu_maintenance/pendrive.png"/>
+                              <Image iconType="3" name="/servicing/icons/pendrive.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Usb Transfers"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
                           </Properties>
                           <Events>

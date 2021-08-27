@@ -352,7 +352,7 @@ public class Dlg_report_inventory_ledger extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POS/icons3/search19.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/search19.png"))); // NOI18N
         jButton1.setToolTipText("Search");
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusable(false);

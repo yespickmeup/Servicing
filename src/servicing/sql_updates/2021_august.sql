@@ -15,4 +15,9 @@ alter table my_services add sales_no varchar(255);
 alter table my_services_item_replacements_customers add sales_id int;
 alter table my_services_item_replacements_customers add sales_no varchar(255);
 
-alter table my_services set 
+insert into  user_default_previleges (account,name)values('Maintenance','Service Departments');
+insert into  user_default_previleges (account,name)values('Maintenance','Service Department Members');
+insert into  user_default_previleges (account,name)values('Maintenance','Service Transaction Type');
+
+
+insert into  user_default_previleges (account,name)values('Transactions','Services-Transaction');

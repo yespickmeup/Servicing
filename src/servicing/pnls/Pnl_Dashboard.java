@@ -28,6 +28,8 @@ import servicing.my_services.S4_branch_locations;
 import servicing.reports.Dlg_my_services_print_barcodes;
 import servicing.reports.Dlg_report_charges;
 import servicing.reports.Dlg_report_services;
+import servicing.stock_transfers.Dlg_new_stock_transfer;
+import servicing.users.Dlg_users;
 import servicing.users.MyUser;
 import servicing.users.User_previleges;
 import servicing.users.Users;
@@ -693,7 +695,7 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 }
 
                 if (data.stmt.equals("Stock Transfer")) {
-                    t_services_transactions();
+                    stock_transfer();
                 }
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc=" maintenance ">
@@ -705,6 +707,9 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 }
                 if (data.stmt.equals("Service Transaction Type")) {
                     m_type();
+                }
+                if (data.stmt.equals("Users")) {
+                    users();
                 }
 
                 //</editor-fold>
@@ -736,6 +741,16 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         Point point = jLabel51.getLocationOnScreen();
         nd.setLocation(point.x - 125, point.y + 37);
         nd.setVisible(true);
+    }
+
+    private void users() {
+        Dlg_users dtc = new Dlg_users();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Users");
+    }
+
+    private void stock_transfer() {
+        Dlg_new_stock_transfer dtc = new Dlg_new_stock_transfer();
+        MyFrame.set(dtc.getSurface(), jPanel1, "Stock Transfer");
     }
 
     private void t_services_transactions() {

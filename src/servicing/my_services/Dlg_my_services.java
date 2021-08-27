@@ -2335,6 +2335,8 @@ public class Dlg_my_services extends javax.swing.JDialog {
 
 //        System.setProperty("pool_host", "localhost");
 //        System.setProperty("pool_db", "db_algorithm");
+//        System.setProperty("pool_host", "192.168.0.51");
+
         init_key();
         init_tbl_my_services();
         focus();

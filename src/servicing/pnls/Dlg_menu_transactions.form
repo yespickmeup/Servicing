@@ -86,6 +86,7 @@
               <Image iconType="3" name="/servicing/icons/repairing-service.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Services"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
