@@ -21,3 +21,21 @@ insert into  user_default_previleges (account,name)values('Maintenance','Service
 
 
 insert into  user_default_previleges (account,name)values('Transactions','Services-Transaction');
+
+
+alter table sale_slip_nos add department varchar(255);
+alter table sale_slip_nos add department_id int default 0;
+
+alter table my_services add release_date datetime;
+alter table my_services add released_by_id int;
+alter table my_services add released_by_screen_name varchar(255);
+
+alter table my_services_item_replacements_customers add release_date datetime;
+alter table my_services_item_replacements_customers add released_by_id int;
+alter table my_services_item_replacements_customers add released_by_screen_name varchar(255);
+
+
+
+
+
+

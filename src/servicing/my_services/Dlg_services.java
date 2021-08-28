@@ -587,7 +587,6 @@ public class Dlg_services extends javax.swing.JDialog {
                             .addComponent(tf_contact_no5)
                             .addComponent(tf_contact_no6)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -879,21 +878,21 @@ public class Dlg_services extends javax.swing.JDialog {
                     .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_contact_no8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_contact_no10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_contact_no16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tf_contact_no16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_contact_no10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_contact_no11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_contact_no11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addContainerGap())
@@ -2527,16 +2526,17 @@ public class Dlg_services extends javax.swing.JDialog {
         String where = " where lname like '%" + search + "%' and location_id='" + MyUser.getLocation_id() + "' "
                 + " or fname like '%" + search + "%' and location_id='" + MyUser.getLocation_id() + "' order by lname asc";
         manager_list = My_services_crews.ret_data(where);
-        Object[][] obj = new Object[manager_list.size()][1];
+        Object[][] obj = new Object[manager_list.size()][2];
         int i = 0;
         for (My_services_crews.to_my_services_crews to : manager_list) {
             obj[i][0] = " " + to.fname + " " + to.mi + " " + to.lname;
+            obj[i][1] = " " + to.department;
             i++;
         }
         JLabel[] labels = {};
-        int[] tbl_widths_customers = {tf_serviced_by.getWidth()};
+        int[] tbl_widths_customers = {tf_serviced_by.getWidth() / 2, tf_serviced_by.getWidth() / 2};
         int width = 0;
-        String[] col_names = {""};
+        String[] col_names = {"", ""};
         TableRenderer tr = new TableRenderer();
         TableRenderer.setPopup(tf_serviced_by, obj, labels, tbl_widths_customers, col_names);
         tr.setCallback(new TableRenderer.Callback() {
@@ -2992,7 +2992,7 @@ public class Dlg_services extends javax.swing.JDialog {
             Window p = (Window) this;
             Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
             nd.setTitle("");
-            nd.do_pass("");
+            nd.do_pass("Save Transaction?");
             nd.setCallback(new Dlg_confirm_action.Callback() {
 
                 @Override
@@ -4038,6 +4038,7 @@ public class Dlg_services extends javax.swing.JDialog {
 
     //</editor-fold>
     private void save_my_services_item_replacements_customers() {
+
         int row = tbl_my_services_item_replacements_customers.getSelectedRow();
         if (row < 0) {
             int row2 = tbl_my_services.getSelectedRow();
@@ -4097,6 +4098,10 @@ public class Dlg_services extends javax.swing.JDialog {
             } else {
 
                 My_services.to_my_services service = (My_services.to_my_services) tbl_my_services_ALM.get(row2);
+                if (service.status > 1) {
+                    Alert.set(0, "Cannot proceed! Traction already finalized");
+                    return;
+                }
                 int id = 0;
                 String transaction_no = service.transaction_no;
                 String customer_id = service.customer_id;
@@ -4153,6 +4158,7 @@ public class Dlg_services extends javax.swing.JDialog {
             new_my_services_item_replacements_customers();
         } else {
             My_services_item_replacements_customers.to_my_services_item_replacements_customers replacement = (My_services_item_replacements_customers.to_my_services_item_replacements_customers) tbl_my_services_item_replacements_customers_ALM.get(row);
+
             if (replacement.id == 0) {
                 String item_code = tf_item_code.getText();
                 String barcode = tf_contact_no9.getText();
