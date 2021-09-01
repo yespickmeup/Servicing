@@ -74,8 +74,13 @@ public class Stock_transfer_items {
         public final int is_uploaded;
         public final String finalized_by_id;
         public final String finalized_by;
+        public final int service_id;
+        public final String service_trans_no;
+        public final String service_slip_no;
+        public final int service_by_id;
+        public final String service_by_name;
 
-        public to_stock_transfers_items(int id, String barcode, String description, String generic_name, String category, String category_id, String classification, String classification_id, String sub_classification, String sub_classification_id, double product_qty, String unit, double conversion, double selling_price, String date_added, String user_name, String item_type, int status, String supplier, int fixed_price, double cost, String supplier_id, int multi_level_pricing, int vatable, double reorder_level, double markup, String barcodes, String brand, String brand_id, String model, String model_id, int selling_type, String branch, String branch_code, String location, String location_id, String stock_transfer_id, String serial_no, String to_branch, String to_branch_id, String to_location, String to_location_id, String at_branch, String at_branch_id, String at_location, String at_location_id, int is_uploaded, String finalized_by_id, String finalized_by) {
+        public to_stock_transfers_items(int id, String barcode, String description, String generic_name, String category, String category_id, String classification, String classification_id, String sub_classification, String sub_classification_id, double product_qty, String unit, double conversion, double selling_price, String date_added, String user_name, String item_type, int status, String supplier, int fixed_price, double cost, String supplier_id, int multi_level_pricing, int vatable, double reorder_level, double markup, String barcodes, String brand, String brand_id, String model, String model_id, int selling_type, String branch, String branch_code, String location, String location_id, String stock_transfer_id, String serial_no, String to_branch, String to_branch_id, String to_location, String to_location_id, String at_branch, String at_branch_id, String at_location, String at_location_id, int is_uploaded, String finalized_by_id, String finalized_by, int service_id, String service_trans_no, String service_slip_no, int service_by_id, String service_by_name) {
             this.id = id;
             this.barcode = barcode;
             this.description = description;
@@ -125,6 +130,11 @@ public class Stock_transfer_items {
             this.is_uploaded = is_uploaded;
             this.finalized_by_id = finalized_by_id;
             this.finalized_by = finalized_by;
+            this.service_id = service_id;
+            this.service_trans_no = service_trans_no;
+            this.service_slip_no = service_slip_no;
+            this.service_by_id = service_by_id;
+            this.service_by_name = service_by_name;
         }
     }
 
@@ -438,6 +448,11 @@ public class Stock_transfer_items {
                     + ",is_uploaded"
                     + ",finalized_by_id"
                     + ",finalized_by"
+                    + ",service_id"
+                    + ",service_trans_no"
+                    + ",service_slip_no"
+                    + ",service_by_id"
+                    + ",service_by_name"
                     + " from stock_transfers_items"
                     + " " + where;
 
@@ -493,8 +508,12 @@ public class Stock_transfer_items {
                 int is_uploaded = rs.getInt(47);
                 String finalized_by_id = rs.getString(48);
                 String finalized_by = rs.getString(49);
-
-                to_stock_transfers_items to = new to_stock_transfers_items(id, barcode, description, generic_name, category, category_id, classification, classification_id, sub_classification, sub_classification_id, product_qty, unit, conversion, selling_price, date_added, user_name, item_type, status, supplier, fixed_price, cost, supplier_id, multi_level_pricing, vatable, reorder_level, markup, barcodes, brand, brand_id, model, model_id, selling_type, branch, branch_code, location, location_id, stock_transfer_id, serial_no, to_branch, to_branch_id, to_location, to_location_id, at_branch, at_branch_id, at_location, at_location_id, is_uploaded, finalized_by_id, finalized_by);
+                int service_id = rs.getInt(50);
+                String service_trans_no = rs.getString(51);
+                String service_slip_no = rs.getString(52);
+                int service_by_id = rs.getInt(53);
+                String service_by_name = rs.getString(54);
+                to_stock_transfers_items to = new to_stock_transfers_items(id, barcode, description, generic_name, category, category_id, classification, classification_id, sub_classification, sub_classification_id, product_qty, unit, conversion, selling_price, date_added, user_name, item_type, status, supplier, fixed_price, cost, supplier_id, multi_level_pricing, vatable, reorder_level, markup, barcodes, brand, brand_id, model, model_id, selling_type, branch, branch_code, location, location_id, stock_transfer_id, serial_no, to_branch, to_branch_id, to_location, to_location_id, at_branch, at_branch_id, at_location, at_location_id, is_uploaded, finalized_by_id, finalized_by, service_id, service_trans_no, service_slip_no, service_by_id, service_by_name);
                 datas.add(to);
             }
             return datas;

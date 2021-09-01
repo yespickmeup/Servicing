@@ -340,7 +340,7 @@ public class Dlg_menu_transactions extends javax.swing.JDialog {
     }
 
     private void hide2() {
-        JLabel[] lbl = {jLabel7};
+        JLabel[] lbl = {jLabel7,jLabel15};
         for (JLabel l : lbl) {
             l.setEnabled(false);
         }

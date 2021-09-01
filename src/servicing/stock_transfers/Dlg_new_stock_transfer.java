@@ -36,6 +36,7 @@ import com.jgoodies.binding.adapter.AbstractTableAdapter;
 import com.jgoodies.binding.list.ArrayListModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -65,7 +66,7 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.swing.JRViewer;
-import servicing.branch_locations.Branch_locations;
+import servicing.my_services.My_services;
 
 import synsoftech.fields.Field;
 import synsoftech.util.ImageRenderer;
@@ -196,6 +197,12 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         }
 
         Dlg_new_stock_transfer dialog = Dlg_new_stock_transfer.create(new javax.swing.JFrame(), true);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xSize = ((int) tk.getScreenSize().
+                getWidth());
+        int ySize = ((int) tk.getScreenSize().
+                getHeight());
+        dialog.setSize(xSize, ySize);
         dialog.setVisible(true);
 
     }
@@ -289,6 +296,10 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton7 = new Button.Success();
+        tf_slip_no = new Field.Combo();
+        tf_service_by_id = new javax.swing.JTextField();
+        tf_from_location6 = new Field.Combo();
+        tf_slip_no1 = new Field.Combo();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -430,7 +441,7 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Location:");
+        jLabel5.setText("Slip No.:");
 
         tf_from_location.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tf_from_location.setFocusable(false);
@@ -452,7 +463,7 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Branch:");
 
         tf_to_location_id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -475,8 +486,8 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Location:");
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("Service by:");
 
         tf_to_branch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tf_to_branch.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -609,7 +620,7 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                     .addComponent(tf_search, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -719,6 +730,41 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
             }
         });
 
+        tf_slip_no.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_slip_no.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_slip_noMouseClicked(evt);
+            }
+        });
+        tf_slip_no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_slip_noActionPerformed(evt);
+            }
+        });
+
+        tf_service_by_id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_service_by_id.setFocusable(false);
+
+        tf_from_location6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_from_location6.setFocusable(false);
+        tf_from_location6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_from_location6ActionPerformed(evt);
+            }
+        });
+
+        tf_slip_no1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_slip_no1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tf_slip_no1MouseClicked(evt);
+            }
+        });
+        tf_slip_no1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_slip_no1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -734,21 +780,28 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_from_location, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                                    .addComponent(tf_from_branch))
-                                .addGap(0, 0, 0)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_from_location_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tf_from_branch_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField2)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tf_from_location, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                            .addComponent(tf_from_branch))
+                                        .addGap(0, 0, 0)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tf_from_location_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_from_branch_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_service_by_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2)))
+                        .addGap(39, 39, 39))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2)))
-                .addGap(39, 39, 39)
+                        .addGap(10, 10, 10)
+                        .addComponent(tf_slip_no)
+                        .addGap(73, 73, 73)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -771,7 +824,8 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
-                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_slip_no1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -779,6 +833,11 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                         .addGap(10, 10, 10)
                         .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(346, 346, 346)
+                    .addComponent(tf_from_location6)
+                    .addGap(347, 347, 347)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -794,34 +853,37 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(5, 5, 5)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tf_to_branch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tf_to_branch_id, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(tf_from_branch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tf_from_branch_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_to_branch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_to_branch_id, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(2, 2, 2)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_to_location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_to_location_id, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_from_branch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_from_branch_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(1, 1, 1)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_from_location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tf_from_location_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(tf_from_location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tf_from_location_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tf_to_location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tf_to_location_id, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(tf_slip_no1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(tf_slip_no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tf_service_by_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
@@ -837,6 +899,11 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                             .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(2, 2, 2)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(288, 288, 288)
+                    .addComponent(tf_from_location6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(289, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1889,6 +1956,26 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         init_inventory_barcodes_items_transfered();
     }//GEN-LAST:event_tf_search1ActionPerformed
 
+    private void tf_slip_noMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_slip_noMouseClicked
+        init_slip_no();
+    }//GEN-LAST:event_tf_slip_noMouseClicked
+
+    private void tf_slip_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_slip_noActionPerformed
+        init_slip_no();
+    }//GEN-LAST:event_tf_slip_noActionPerformed
+
+    private void tf_from_location6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_from_location6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_from_location6ActionPerformed
+
+    private void tf_slip_no1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_slip_no1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_slip_no1MouseClicked
+
+    private void tf_slip_no1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_slip_no1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_slip_no1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2027,10 +2114,14 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
     private javax.swing.JTextField tf_from_location2;
     private javax.swing.JTextField tf_from_location3;
     private javax.swing.JTextField tf_from_location4;
+    private javax.swing.JTextField tf_from_location6;
     private javax.swing.JTextField tf_from_location_id;
     private javax.swing.JTextArea tf_remarks;
     private javax.swing.JTextField tf_search;
     private javax.swing.JTextField tf_search1;
+    private javax.swing.JTextField tf_service_by_id;
+    private javax.swing.JTextField tf_slip_no;
+    private javax.swing.JTextField tf_slip_no1;
     private javax.swing.JTextField tf_to_branch;
     private javax.swing.JTextField tf_to_branch_id;
     private javax.swing.JTextField tf_to_location;
@@ -2044,6 +2135,7 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
 //        System.setProperty("pool_db", "db_smis_dumaguete_refreshments_store");
 //        System.setProperty("pool_db", "db_smis_dumaguete_refreshments_bodega");
 //        System.setProperty("pool_db", "db_algorithm");
+//        System.setProperty("pool_password", "password");
 //        MyUser.setUser_id("1");
 //        System.setProperty("pool_host", "192.168.1.51");
 //        System.setProperty("main_branch", "true");
@@ -2068,6 +2160,7 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         tf_from_location_id.setVisible(false);
         tf_to_branch_id.setVisible(false);
         tf_to_location_id.setVisible(false);
+        tf_service_by_id.setVisible(false);
         String where = " order by branch,location asc ";
         branch_location_list2 = S1_branch_locations.ret_location_where(where);
         branch_location_list3 = branch_location_list2;
@@ -2598,9 +2691,9 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                     if (tt.is_uploaded == 0) {
                         return "/servicing/imgs/cloud-storage-uploading-option (3).png";
                     } else if (tt.is_uploaded == 2) {
-                        return "//servicing/imgs/cloud-storage-uploading-option (4).png";
+                        return "/servicing/imgs/cloud-storage-uploading-option (4).png";
                     } else if (tt.is_uploaded == 3) {
-                        return "/servicing/imgs/cloud-storage-uploading-option (6)";
+                        return "/servicing/imgs/cloud-storage-uploading-option (6).png";
                     } else if (tt.is_uploaded == 4) {
                         return "/servicing/imgs/cloud-storage-uploading-option (5).png";
                     } else {
@@ -2719,9 +2812,26 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         String finalized_by_id = MyUser.getUser_id();
         String finalized_by = MyUser.getUser_screen_name();
 
+        Field.Combo slip = (Field.Combo) tf_slip_no;
+        Field.Combo serv = (Field.Combo) tf_slip_no1;
+
+        int service_id = FitIn.toInt(tf_service_by_id.getText());
+        String service_trans_no = slip.getId();
+        String service_slip_no = slip.getText();
+        int service_by_id = FitIn.toInt(serv.getId());
+        String service_by_name = serv.getText();
+
+        if (tf_service_by_id.getText().isEmpty() || tf_slip_no.getText().isEmpty()) {
+            service_id = 0;
+            service_trans_no = "";
+            service_slip_no = "";
+            service_by_id = 0;
+            service_by_name = "";
+        }
+
         final Stock_transfers.to_stock_transfers rpt = new to_stock_transfers(id, transaction_no, user_name, date_added, remarks, to_branch, to_branch_id, to_location,
                                                                               to_location_id, from_branch, from_branch_id, from_location, from_location_id, 0, false, at_branch, at_branch_id, at_location, at_location_id,
-                                                                              is_uploaded, finalized_by_id, finalized_by);
+                                                                              is_uploaded, finalized_by_id, finalized_by, service_id, service_trans_no, service_slip_no, service_by_id, service_by_name);
         Window p = (Window) this;
         Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
         nd.setTitle("");
@@ -2880,9 +2990,27 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         }
         String finalized_by_id = MyUser.getUser_id();
         String finalized_by = MyUser.getUser_screen_name();
+
+        Field.Combo slip = (Field.Combo) tf_slip_no;
+        Field.Combo serv = (Field.Combo) tf_slip_no1;
+
+        int service_id = FitIn.toInt(tf_service_by_id.getText());
+        String service_trans_no = slip.getId();
+        String service_slip_no = slip.getText();
+        int service_by_id = FitIn.toInt(serv.getId());
+        String service_by_name = serv.getText();
+
+        if (tf_service_by_id.getText().isEmpty() || tf_slip_no.getText().isEmpty()) {
+            service_id = 0;
+            service_trans_no = "";
+            service_slip_no = "";
+            service_by_id = 0;
+            service_by_name = "";
+        }
+
         final Stock_transfers.to_stock_transfers rpt = new to_stock_transfers(id, transaction_no, user_name, date_added, remarks, to_branch, to_branch_id, to_location,
                                                                               to_location_id, from_branch, from_branch_id, from_location, from_location_id, 0, false, at_branch, at_branch_id, at_location, at_location_id,
-                                                                              is_uploaded, finalized_by_id, finalized_by);
+                                                                              is_uploaded, finalized_by_id, finalized_by, service_id, service_trans_no, service_slip_no, service_by_id, service_by_name);
         Window p = (Window) this;
         Dlg_confirm_action nd = Dlg_confirm_action.create(p, true);
         nd.setTitle("");
@@ -3665,6 +3793,15 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         tf_to_location.setText(to.to_location);
         tf_to_location_id.setText(to.to_location_id);
 
+        Field.Combo slip = (Field.Combo) tf_slip_no;
+        Field.Combo serv = (Field.Combo) tf_slip_no1;
+        tf_service_by_id.setText("" + to.service_id);
+        slip.setId(to.service_trans_no);
+        slip.setText(to.service_slip_no);
+
+        serv.setId("" + to.service_by_id);
+        serv.setText(to.service_by_name);
+
         try {
             Date d = DateType.datetime.parse(to.date_added);
             jDateChooser5.setDate(d);
@@ -3856,7 +3993,25 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
                     int is_uploaded = 1;
                     String finalized_by_id = MyUser.getUser_id();
                     String finalized_by = MyUser.getUser_screen_name();
-                    final Stock_transfers.to_stock_transfers rpt = new to_stock_transfers(id, transaction_no, user_name, date_added, remarks, to_branch, to_branch_id, to_location, to_location_id, from_branch, from_branch_id, from_location, from_location_id, 0, false, at_branch, at_branch_id, at_location, at_location_id, is_uploaded, finalized_by_id, finalized_by);
+
+                    Field.Combo slip = (Field.Combo) tf_slip_no;
+                    Field.Combo serv = (Field.Combo) tf_from_location6;
+
+                    int service_id = FitIn.toInt(tf_service_by_id.getText());
+                    String service_trans_no = slip.getId();
+                    String service_slip_no = slip.getText();
+                    int service_by_id = FitIn.toInt(serv.getId());
+                    String service_by_name = serv.getText();
+
+                    if (tf_service_by_id.getText().isEmpty() || tf_slip_no.getText().isEmpty()) {
+                        service_id = 0;
+                        service_trans_no = "";
+                        service_slip_no = "";
+                        service_by_id = 0;
+                        service_by_name = "";
+                    }
+
+                    final Stock_transfers.to_stock_transfers rpt = new to_stock_transfers(id, transaction_no, user_name, date_added, remarks, to_branch, to_branch_id, to_location, to_location_id, from_branch, from_branch_id, from_location, from_location_id, 0, false, at_branch, at_branch_id, at_location, at_location_id, is_uploaded, finalized_by_id, finalized_by, service_id, service_trans_no, service_slip_no, service_by_id, service_by_name);
                     List<Stock_transfers_items.to_stock_transfers_items> datas = tbl_stock_transfers_items_ALM;
                     Stock_transfers.add_stock_transfers(rpt, datas);
                     Stock_transfers.finalize(rpt, datas, finalized_by_id, finalized_by);
@@ -4264,6 +4419,11 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         tf_to_branch_id.setText("");
         tf_to_location.setText("");
         tf_to_location_id.setText("");
+
+        tf_service_by_id.setText("");
+        tf_slip_no.setText("");
+        tf_slip_no1.setText("");
+
         tbl_stock_transfers_items_ALM.clear();
         tbl_stock_transfers_items_M.fireTableDataChanged();
         tbl_stock_transfers.clearSelection();
@@ -4365,4 +4525,46 @@ public class Dlg_new_stock_transfer extends javax.swing.JDialog {
         tf_search.setEnabled(true);
     }
 
+    private void init_slip_no() {
+
+        if (tf_slip_no.getText().isEmpty()) {
+            return;
+        }
+        String search = tf_slip_no.getText();
+        String where = " where service_slip_no like '%" + search + "%' and status<2 order by service_slip_no asc ";
+
+        final List<My_services.to_my_services> services = My_services.ret_data(where);
+
+        Object[][] obj = new Object[services.size()][3];
+        int i = 0;
+        for (My_services.to_my_services to : services) {
+            obj[i][0] = " " + to.transaction_no;
+            obj[i][1] = " " + to.service_slip_no;
+            obj[i][2] = " " + to.serviced_by;
+            i++;
+        }
+        JLabel[] labels = {};
+        int[] tbl_widths_customers = {120, 120, 150};
+        int width = 0;
+        String[] col_names = {"Transaction #", "Slip No", "Service by"};
+        TableRenderer tr = new TableRenderer();
+        TableRenderer.setPopup2(tf_slip_no, obj, labels, tbl_widths_customers, col_names, jTextField2.getWidth() + 200);
+        tr.setCallback(new TableRenderer.Callback() {
+            @Override
+            public void ok(TableRenderer.OutputData data) {
+                My_services.to_my_services to = services.get(data.selected_row);
+
+                Field.Combo slip = (Field.Combo) tf_slip_no;
+                Field.Combo serv = (Field.Combo) tf_slip_no1;
+                tf_service_by_id.setText("" + to.id);
+                slip.setText(to.service_slip_no);
+                slip.setId(to.transaction_no);
+
+                serv.setText(to.serviced_by);
+                serv.setId(to.service_by_id);
+
+            }
+        });
+
+    }
 }

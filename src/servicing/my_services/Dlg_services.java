@@ -4073,7 +4073,7 @@ public class Dlg_services extends javax.swing.JDialog {
                 String unit = item.unit;
                 double conversion = item.conversion;
                 String item_type = item.item_type;
-                int status = item.status;
+                int status = 1;
                 String supplier = item.supplier;
                 int fixed_price = item.fixed_price;
                 String supplier_id = item.supplier;
@@ -4127,7 +4127,7 @@ public class Dlg_services extends javax.swing.JDialog {
                 String unit = item.unit;
                 double conversion = item.conversion;
                 String item_type = item.item_type;
-                int status = item.status;
+                int status = 0;
                 String supplier = item.supplier;
                 int fixed_price = item.fixed_price;
                 String supplier_id = item.supplier;

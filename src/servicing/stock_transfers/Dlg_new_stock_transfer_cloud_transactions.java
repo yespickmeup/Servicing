@@ -594,6 +594,7 @@ public class Dlg_new_stock_transfer_cloud_transactions extends javax.swing.JDial
     }
 
     static int show_cost = 1;
+
     private void set_default_branch() {
         S1_branch_locations.to_branch_locations to = S4_branch_locations.ret_data();
         Field.Input f_br = (Field.Input) tf_from_branch;
@@ -670,11 +671,11 @@ public class Dlg_new_stock_transfer_cloud_transactions extends javax.swing.JDial
         public static String[] COLUMNS = {
             "Trans #", "Date", "From", "To", "Status", "", "", "", "", "", "", "from_location", "from_location_id"
         };
-        
+
         public Tblstock_transfersModel(ListModel listmodel) {
             super(listmodel, COLUMNS);
         }
-        
+
         @Override
         public boolean isCellEditable(int row, int column) {
 
@@ -771,7 +772,7 @@ public class Dlg_new_stock_transfer_cloud_transactions extends javax.swing.JDial
                         Synch_stock_transfers.update_status_stock_transfer_cloud(trans.transaction_no, 1, trans.at_location_id);
                     }
                 }
-                
+
                 List<Stock_transfers.to_stock_transfers> datas2 = Stock_transfers.ret_data_cloud(where);
                 loadData_stock_transfers(datas2);
                 jLabel2.setText("" + datas2.size());
@@ -1064,9 +1065,15 @@ public class Dlg_new_stock_transfer_cloud_transactions extends javax.swing.JDial
         int is_uploaded = 1;
         String finalized_by_id = MyUser.getUser_id();
         String finalized_by = MyUser.getUser_screen_name();
+        int service_id = 0;
+        String service_trans_no = "";
+        String service_slip_no = "";
+        int service_by_id = 0;
+        String service_by_name = "";
+
         final Stock_transfers.to_stock_transfers rpt = new Stock_transfers.to_stock_transfers(id, transaction_no, user_name, date_added, remarks,
                                                                                               to_branch, to_branch_id, to_location, to_location_id, from_branch, from_branch_id, from_location, from_location_id, 0, false,
-                                                                                              at_branch, at_branch_id, at_location, at_location_id, is_uploaded, finalized_by_id, finalized_by);
+                                                                                              at_branch, at_branch_id, at_location, at_location_id, is_uploaded, finalized_by_id, finalized_by, service_id, service_trans_no, service_slip_no, service_by_id, service_by_name);
         List<Stock_transfers_items.to_stock_transfers_items> datas = tbl_stock_transfers_items_ALM;
         if (datas.isEmpty()) {
             Alert.set(0, "No Item Added!");

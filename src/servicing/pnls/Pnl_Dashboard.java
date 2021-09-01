@@ -27,6 +27,7 @@ import servicing.my_services.Dlg_services;
 import servicing.my_services.S4_branch_locations;
 import servicing.reports.Dlg_my_services_print_barcodes;
 import servicing.reports.Dlg_report_charges;
+import servicing.reports.Dlg_report_item;
 import servicing.reports.Dlg_report_services;
 import servicing.stock_transfers.Dlg_new_stock_transfer;
 import servicing.users.Dlg_users;
@@ -723,7 +724,10 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
                 if (data.stmt.equals("Services Performance Report")) {
                     r_services_performance();
                 }
+                if (data.stmt.equals("Stock Take")) {
 
+                    rpt_stock_status();
+                }
                 //</editor-fold>
             }
 
@@ -741,6 +745,12 @@ public class Pnl_Dashboard extends javax.swing.JFrame {
         Point point = jLabel51.getLocationOnScreen();
         nd.setLocation(point.x - 125, point.y + 37);
         nd.setVisible(true);
+    }
+
+    private void rpt_stock_status() {
+        Dlg_report_item dtc = new Dlg_report_item();
+        dtc.do_pass(0);
+        MyFrame.set(dtc.getSurface(), jPanel1, "Stock Take Report");
     }
 
     private void users() {
