@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servicing.stock_transfers;
+package servicing.my_services;
 
-import servicing.unit_of_measure.S1_unit_of_measure;
+import servicing.my_services.S1_unit_of_measure;
 import servicing.utils.Alert;
 import servicing.utils.Focus_Fire;
 import com.jgoodies.binding.adapter.AbstractTableAdapter;
@@ -34,7 +34,7 @@ import synsoftech.fields.Field;
  *
  * @author Guinness
  */
-public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
+public class Dlg_services_qty extends javax.swing.JDialog {
 
     /**
      * Creates new form Dlg_new_stock_transfer_qty
@@ -62,46 +62,45 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
         public final double conversion;
         public final String unit;
         public final double selling_price;
-
-        public OutputData(double qty, String serial_no, double conversion, String unit, double selling_price) {
+        public OutputData(double qty, String serial_no,double conversion,String unit,double selling_price) {
             this.qty = qty;
             this.serial_no = serial_no;
-            this.conversion = conversion;
-            this.unit = unit;
-            this.selling_price = selling_price;
+            this.conversion=conversion;
+            this.unit=unit;
+            this.selling_price=selling_price;
         }
 
     }
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc=" Constructors ">
-    private Dlg_new_stock_transfer_qty(java.awt.Frame parent, boolean modal) {
+    private Dlg_services_qty(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    private Dlg_new_stock_transfer_qty(java.awt.Dialog parent, boolean modal) {
+    private Dlg_services_qty(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         myInit();
     }
 
-    public Dlg_new_stock_transfer_qty() {
+    public Dlg_services_qty() {
         super();
         setUndecorated(true);
         initComponents();
         myInit();
 
     }
-    private Dlg_new_stock_transfer_qty myRef;
+    private Dlg_services_qty myRef;
 
-    private void setThisRef(Dlg_new_stock_transfer_qty myRef) {
+    private void setThisRef(Dlg_services_qty myRef) {
         this.myRef = myRef;
     }
-    private static java.util.Map<Object, Dlg_new_stock_transfer_qty> dialogContainer = new java.util.HashMap();
+    private static java.util.Map<Object, Dlg_services_qty> dialogContainer = new java.util.HashMap();
 
     public static void clearUpFirst(java.awt.Window parent) {
         if (dialogContainer.containsKey(parent)) {
@@ -109,7 +108,7 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
         }
     }
 
-    public static Dlg_new_stock_transfer_qty create(java.awt.Window parent, boolean modal) {
+    public static Dlg_services_qty create(java.awt.Window parent, boolean modal) {
 
         if (modal) {
             return create(parent, ModalityType.APPLICATION_MODAL);
@@ -119,14 +118,14 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
 
     }
 
-    public static Dlg_new_stock_transfer_qty create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
+    public static Dlg_services_qty create(java.awt.Window parent, java.awt.Dialog.ModalityType modalType) {
 
         if (parent instanceof java.awt.Frame) {
 
-            Dlg_new_stock_transfer_qty dialog = dialogContainer.get(parent);
+            Dlg_services_qty dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_new_stock_transfer_qty((java.awt.Frame) parent, false);
+                dialog = new Dlg_services_qty((java.awt.Frame) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -140,10 +139,10 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
         }
 
         if (parent instanceof java.awt.Dialog) {
-            Dlg_new_stock_transfer_qty dialog = dialogContainer.get(parent);
+            Dlg_services_qty dialog = dialogContainer.get(parent);
 
             if (dialog == null) {
-                dialog = new Dlg_new_stock_transfer_qty((java.awt.Dialog) parent, false);
+                dialog = new Dlg_services_qty((java.awt.Dialog) parent, false);
                 dialog.setModalityType(modalType);
                 dialogContainer.put(parent, dialog);
                 java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "instances: {0}", dialogContainer.size());
@@ -170,7 +169,7 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
             throw new RuntimeException(e);
         }
 
-        Dlg_new_stock_transfer_qty dialog = Dlg_new_stock_transfer_qty.create(new javax.swing.JFrame(), true);
+        Dlg_services_qty dialog = Dlg_services_qty.create(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
 
     }
@@ -447,7 +446,7 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        ok();
+       ok();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextArea1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyReleased
@@ -505,28 +504,28 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
         }
     }
 
-    private void set_border() {
+     private void set_border() {
 
         Border border = BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204));
         lbl_desc.setBorder(BorderFactory.createCompoundBorder(border,
-                                                              BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+                BorderFactory.createEmptyBorder(2, 2, 2, 2)));
     }
-
-    public void do_pass(double qty, String serial, String item_code, String barcode, String description, double qty_on_hand, String unit) {
-//        System.out.println("item code2: " + item_code);
+     
+    public void do_pass(double qty, String serial,String item_code,String barcode,String description,double qty_on_hand,String unit) {
         lbl_item_code.setText(item_code);
         lbl_item_code1.setText(barcode);
-
+       
         lbl_desc.setText(description);
-        lbl_qty.setText(FitIn.fmt_woc(qty_on_hand));
-
+         lbl_qty.setText(FitIn.fmt_woc(qty_on_hand));
+        
+        
         serial = serial.replaceAll(",", "\n");
         jTextField1.setText(FitIn.fmt_woc(qty));
         jTextArea1.setText(serial);
         String serials = jTextArea1.getText();
         String[] datas = serials.split("\n");
         jLabel4.setText("" + datas.length);
-
+        
         List<S1_unit_of_measure.to_uom> uoms = new ArrayList();
         String uom = unit;
         String[] list = uom.split(",");
@@ -563,21 +562,21 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
         KeyMapping.mapKeyWIFW(getSurface(),
                               KeyEvent.VK_ESCAPE, new KeyAction() {
 
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              disposed();
-                          }
-                      });
-        KeyMapping.mapKeyWIFW(getSurface(),
+                disposed();
+            }
+        });
+         KeyMapping.mapKeyWIFW(getSurface(),
                               KeyEvent.VK_CONTROL, new KeyAction() {
 
-                          @Override
-                          public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 //                btn_0.doClick();
-                              ok();
-                          }
-                      });
+                ok();
+            }
+        });
     }
     // </editor-fold>
 
@@ -588,19 +587,19 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
             Alert.set(0, "Enter Quantity");
             return;
         }
-        int row = tbl_uom.getSelectedRow();
+         int row = tbl_uom.getSelectedRow();
         if (row < 0) {
             return;
         }
         S1_unit_of_measure.to_uom uom = (S1_unit_of_measure.to_uom) tbl_uom_ALM.get(row);
-        double conversion = uom.conversion;
+         double conversion = uom.conversion;
         String unit = "[" + uom.unit + ":" + uom.price + "/" + uom.conversion + "^" + "1" + "]";
-        double selling_price = uom.price;
+        double selling_price=uom.price;
         if (callback != null) {
-            callback.ok(new CloseDialog(this), new OutputData(qty, serial_no, conversion, unit, selling_price));
+            callback.ok(new CloseDialog(this), new OutputData(qty, serial_no,conversion,unit,selling_price));
         }
     }
-    //<editor-fold defaultstate="collapsed" desc=" init table unit of measure ">
+ //<editor-fold defaultstate="collapsed" desc=" init table unit of measure ">
     private ArrayListModel tbl_uom_ALM;
     private TbluomModel tbl_uom_M;
 
@@ -611,9 +610,9 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
         tbl_uom.setModel(tbl_uom_M);
         tbl_uom.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tbl_uom.setRowHeight(25);
-        int[] tbl_widths_uom = {100, 80, 0};
+        int[] tbl_widths_uom = {70, 80, 0};
         for (int i = 0, n = tbl_widths_uom.length; i < n; i++) {
-            if (i == 1) {
+            if (i == 0) {
                 continue;
             }
             TableWidthUtilities.setColumnWidth(tbl_uom, i, tbl_widths_uom[i]);
@@ -633,7 +632,7 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
     public static class TbluomModel extends AbstractTableAdapter {
 
         public static String[] COLUMNS = {
-            "Unit", "price", "Cost"
+            "Unit", "Conversion", "Cost"
         };
 
         public TbluomModel(ListModel listmodel) {
@@ -661,7 +660,7 @@ public class Dlg_new_stock_transfer_qty extends javax.swing.JDialog {
                 case 0:
                     return " " + tt.unit;
                 case 1:
-                    return " " + FitIn.fmt_wc_0(tt.price) + " ";
+                    return " " + FitIn.fmt_wc_0(tt.conversion);
                 default:
                     return FitIn.fmt_wc_0(tt.price) + " ";
             }

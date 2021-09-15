@@ -100,6 +100,7 @@ public class TableRenderer {
                     if (tbl.getRowCount() != 0) {
                         tbl.setRowSelectionInterval(0, 0);
                         tbl.grabFocus();
+                        
                     }
                 }
             }
@@ -137,6 +138,23 @@ public class TableRenderer {
             }
         });
         tbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = tbl.getSelectedRow();
+                String[] output = new String[tbl_widths_customers.length];
+                int u = 0;
+                for (int y : tbl_widths_customers) {
+                    output[u] = tbl.getModel().
+                            getValueAt(row, u).
+                            toString();
+                    u++;
+                }
+                tf.grabFocus();
+                popup.setVisible(false);
+                ok1(output, row);
+            }
+        });
+         tbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = tbl.getSelectedRow();
@@ -229,6 +247,24 @@ public class TableRenderer {
 
                     ok1(output, row);
                 }
+            }
+        });
+        
+         tbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = tbl.getSelectedRow();
+                String[] output = new String[tbl_widths_customers.length];
+                int u = 0;
+                for (int y : tbl_widths_customers) {
+                    output[u] = tbl.getModel().
+                            getValueAt(row, u).
+                            toString();
+                    u++;
+                }
+                tf.grabFocus();
+                popup.setVisible(false);
+                ok1(output, row);
             }
         });
 

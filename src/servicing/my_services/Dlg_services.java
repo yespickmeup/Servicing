@@ -32,18 +32,24 @@ import mijzcx.synapse.desk.utils.KeyMapping.KeyAction;
 import mijzcx.synapse.desk.utils.TableWidthUtilities;
 import servicing.branch_locations.Branch_locations;
 import servicing.inventory.Inventory;
+import servicing.inventory.Inventory_barcodes;
+import static servicing.my_services.Dlg_my_services_search_transferred_items.tbl_stock_transfers_items_ALM;
 import servicing.my_services.My_services_barcodes_customers.to_my_services_barcodes_customers;
 import servicing.my_services.My_services_description_customers.to_my_services_description_customers;
 import servicing.my_services.S1_my_services_description.to_my_services_description;
 import servicing.my_services.My_services_problems_customers.to_my_services_problems_customers;
 import servicing.my_services.My_services_item_replacements_customers.to_my_services_item_replacements_customers;
 import servicing.my_services.My_services_others_customers.to_my_services_others_customers;
+import servicing.receipts.Stock_transfers_items;
+import servicing.stock_transfers.Dlg_new_stock_transfer_qty;
+import servicing.stock_transfers.Stock_transfers;
 import servicing.users.MyUser;
 import servicing.utils.Alert;
 import servicing.utils.DateType;
 import servicing.utils.DateUtils1;
 import servicing.utils.Dlg_confirm_action;
 import servicing.utils.TableRenderer;
+import servicing.utils.Users;
 import synsoftech.fields.Button;
 import synsoftech.fields.Field;
 import synsoftech.util.ImageRenderer1;
@@ -258,9 +264,9 @@ public class Dlg_services extends javax.swing.JDialog {
         tf_contact_no9 = new Field.Input();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
-        tf_contact_no10 = new Field.Input();
+        tf_qty = new Field.Input();
         jLabel60 = new javax.swing.JLabel();
-        tf_contact_no11 = new Field.Input();
+        tf_selling_price = new Field.Input();
         jLabel8 = new javax.swing.JLabel();
         tf_to_branch = new Field.Combo();
         jLabel17 = new javax.swing.JLabel();
@@ -273,6 +279,7 @@ public class Dlg_services extends javax.swing.JDialog {
         jCheckBox22 = new javax.swing.JCheckBox();
         tf_contact_no16 = new Field.Input();
         jLabel65 = new javax.swing.JLabel();
+        jButton21 = new Button.Default();
         jPanel9 = new javax.swing.JPanel();
         jLabel61 = new javax.swing.JLabel();
         tf_contact_no12 = new Field.Input();
@@ -689,10 +696,10 @@ public class Dlg_services extends javax.swing.JDialog {
         jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel59.setText("Qty:");
 
-        tf_contact_no10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tf_contact_no10.addActionListener(new java.awt.event.ActionListener() {
+        tf_qty.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_qty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_contact_no10ActionPerformed(evt);
+                tf_qtyActionPerformed(evt);
             }
         });
 
@@ -700,11 +707,11 @@ public class Dlg_services extends javax.swing.JDialog {
         jLabel60.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel60.setText("Selling Price:");
 
-        tf_contact_no11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tf_contact_no11.setFocusable(false);
-        tf_contact_no11.addActionListener(new java.awt.event.ActionListener() {
+        tf_selling_price.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_selling_price.setFocusable(false);
+        tf_selling_price.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_contact_no11ActionPerformed(evt);
+                tf_selling_priceActionPerformed(evt);
             }
         });
 
@@ -781,6 +788,7 @@ public class Dlg_services extends javax.swing.JDialog {
         jCheckBox22.setFocusable(false);
 
         tf_contact_no16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_contact_no16.setFocusable(false);
         tf_contact_no16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_contact_no16ActionPerformed(evt);
@@ -791,6 +799,14 @@ public class Dlg_services extends javax.swing.JDialog {
         jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel65.setText("On hand:");
 
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/servicing/icons/search19.png"))); // NOI18N
+        jButton21.setToolTipText("Search Transfered Items");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -798,7 +814,7 @@ public class Dlg_services extends javax.swing.JDialog {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -809,16 +825,19 @@ public class Dlg_services extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(tf_contact_no10, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tf_qty, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel65)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_contact_no16, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel60)
+                                .addComponent(tf_contact_no16, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_contact_no11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel60)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tf_selling_price, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -878,21 +897,19 @@ public class Dlg_services extends javax.swing.JDialog {
                     .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_contact_no8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_contact_no16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_contact_no10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_qty, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_contact_no16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_selling_price, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_contact_no11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addContainerGap())
@@ -976,7 +993,7 @@ public class Dlg_services extends javax.swing.JDialog {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel61, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1067,7 +1084,7 @@ public class Dlg_services extends javax.swing.JDialog {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel64)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1359,26 +1376,30 @@ public class Dlg_services extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(1, 1, 1)
-                        .addComponent(tf_transaction_no))
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_amount)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(25, 25, 25))
-            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(1, 1, 1)
+                                .addComponent(tf_transaction_no))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_amount)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(25, 25, 25))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1832,8 +1853,8 @@ public class Dlg_services extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2028,13 +2049,13 @@ public class Dlg_services extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_contact_no9ActionPerformed
 
-    private void tf_contact_no10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_contact_no10ActionPerformed
+    private void tf_qtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_qtyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_contact_no10ActionPerformed
+    }//GEN-LAST:event_tf_qtyActionPerformed
 
-    private void tf_contact_no11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_contact_no11ActionPerformed
+    private void tf_selling_priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_selling_priceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_contact_no11ActionPerformed
+    }//GEN-LAST:event_tf_selling_priceActionPerformed
 
     private void tf_contact_no12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_contact_no12ActionPerformed
         // TODO add your handling code here:
@@ -2126,6 +2147,10 @@ public class Dlg_services extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_contact_no16ActionPerformed
 
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        ret_transfered_items();
+    }//GEN-LAST:event_jButton21ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2152,6 +2177,7 @@ public class Dlg_services extends javax.swing.JDialog {
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
@@ -2247,8 +2273,6 @@ public class Dlg_services extends javax.swing.JDialog {
     private javax.swing.JTable tbl_my_services_problems_customers;
     private javax.swing.JTextField tf_amount;
     private javax.swing.JTextField tf_contact_no;
-    private javax.swing.JTextField tf_contact_no10;
-    private javax.swing.JTextField tf_contact_no11;
     private javax.swing.JTextField tf_contact_no12;
     private javax.swing.JTextField tf_contact_no13;
     private javax.swing.JTextField tf_contact_no14;
@@ -2267,7 +2291,9 @@ public class Dlg_services extends javax.swing.JDialog {
     private javax.swing.JTextField tf_department_id2;
     private javax.swing.JTextField tf_description_description;
     private javax.swing.JTextField tf_item_code;
+    private javax.swing.JTextField tf_qty;
     private javax.swing.JTextArea tf_remarks;
+    private javax.swing.JTextField tf_selling_price;
     private javax.swing.JTextField tf_service_by;
     private javax.swing.JTextField tf_service_slip_no;
     private javax.swing.JTextField tf_service_type;
@@ -2283,6 +2309,7 @@ public class Dlg_services extends javax.swing.JDialog {
 //        System.setProperty("pool_host", "localhost");
 //        System.setProperty("pool_db", "db_algorithm");
 //        MyUser.setUser_id("1");
+
         init_key();
         set_default_branch();
 //       
@@ -2371,8 +2398,8 @@ public class Dlg_services extends javax.swing.JDialog {
                     tf_item_code.setFocusable(false);
                     tf_contact_no9.setFocusable(false);
                     tf_contact_no8.setFocusable(false);
-                    tf_contact_no10.setFocusable(false);
-                    tf_contact_no11.setFocusable(false);
+                    tf_qty.setFocusable(false);
+                    tf_selling_price.setFocusable(false);
 
                     tf_contact_no13.setFocusable(false);
                     tf_contact_no12.setFocusable(false);
@@ -3998,7 +4025,7 @@ public class Dlg_services extends javax.swing.JDialog {
         int i = 0;
         for (Inventory.to_inventory to : inventory_list) {
             obj[i][0] = " " + to.product_qty;
-            obj[i][1] = " " + to.barcodes;
+            obj[i][1] = " " + to.barcode;
             obj[i][2] = " " + to.description;
             i++;
         }
@@ -4017,23 +4044,45 @@ public class Dlg_services extends javax.swing.JDialog {
             @Override
             public void ok(TableRenderer.OutputData data) {
                 Inventory.to_inventory to = inventory_list.get(data.selected_row);
-                if (to.product_qty < 1) {
-                    Alert.set(0, "Insufficient stock/s");
-                    return;
-                }
+
                 if (to.product_qty <= 0 && to.allow_negative_inventory == 0) {
                     Alert.set(0, "No Stocks Left!");
                     return;
                 }
-                item_selected = data.selected_row;
-                tf_item_code.setText(to.barcodes);
-                tf_contact_no8.setText(to.description);
-                tf_contact_no9.setText(to.barcode);
-                tf_contact_no11.setText(FitIn.fmt_wc_0(to.selling_price));
-                tf_contact_no16.setText("" + to.product_qty);
-                tf_contact_no10.grabFocus();
+//                System.out.println("item code: "+to.barcode);
+                add_item(to, data.selected_row);
             }
         });
+    }
+
+    private void add_item(final Inventory.to_inventory to, int row) {
+        Window p = (Window) this;
+        Dlg_new_stock_transfer_qty nd = Dlg_new_stock_transfer_qty.create(p, true);
+        nd.setTitle("");
+        nd.do_pass(1, "", to.barcode, to.barcodes, to.description, to.product_qty, to.unit);
+        nd.setCallback(new Dlg_new_stock_transfer_qty.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_new_stock_transfer_qty.OutputData data) {
+                closeDialog.ok();
+
+                double product_qty = data.qty;
+                String unit = data.unit;
+                double conversion = data.conversion;
+                double selling_price = data.selling_price;
+
+                item_selected = row;
+                tf_item_code.setText(to.barcode);
+                tf_contact_no8.setText(to.description);
+                tf_contact_no9.setText(to.barcodes);
+                tf_selling_price.setText(FitIn.fmt_wc_0(selling_price));
+                tf_qty.setText("" + product_qty);
+                tf_qty.grabFocus();
+
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
     }
 
     //</editor-fold>
@@ -4055,13 +4104,13 @@ public class Dlg_services extends javax.swing.JDialog {
                 String item_code = tf_item_code.getText();
                 String barcode = tf_contact_no9.getText();
                 String description = tf_contact_no8.getText();
-                double qty = FitIn.toDouble(tf_contact_no10.getText());
+                double qty = FitIn.toDouble(tf_qty.getText());
                 if (qty <= 0) {
                     Alert.set(0, "Input Quantity");
-                    tf_contact_no10.grabFocus();
+                    tf_qty.grabFocus();
                     return;
                 }
-                double selling_price = FitIn.toDouble(tf_contact_no11.getText());
+                double selling_price = FitIn.toDouble(tf_selling_price.getText());
                 String date_added = DateType.now();
                 String user_name = MyUser.getUser_name();
                 String category = item.category;
@@ -4109,13 +4158,13 @@ public class Dlg_services extends javax.swing.JDialog {
                 String item_code = tf_item_code.getText();
                 String barcode = tf_contact_no9.getText();
                 String description = tf_contact_no8.getText();
-                double qty = FitIn.toDouble(tf_contact_no10.getText());
+                double qty = FitIn.toDouble(tf_qty.getText());
                 if (qty <= 0) {
                     Alert.set(0, "Input Quantity");
-                    tf_contact_no10.grabFocus();
+                    tf_qty.grabFocus();
                     return;
                 }
-                double selling_price = FitIn.toDouble(tf_contact_no11.getText());
+                double selling_price = FitIn.toDouble(tf_selling_price.getText());
                 String date_added = DateType.now();
                 String user_name = service.added_by;
                 String category = item.category;
@@ -4163,13 +4212,13 @@ public class Dlg_services extends javax.swing.JDialog {
                 String item_code = tf_item_code.getText();
                 String barcode = tf_contact_no9.getText();
                 String description = tf_contact_no8.getText();
-                double qty = FitIn.toDouble(tf_contact_no10.getText());
+                double qty = FitIn.toDouble(tf_qty.getText());
                 if (qty <= 0) {
                     Alert.set(0, "Input Quantity");
-                    tf_contact_no10.grabFocus();
+                    tf_qty.grabFocus();
                     return;
                 }
-                double selling_price = FitIn.toDouble(tf_contact_no11.getText());
+                double selling_price = FitIn.toDouble(tf_selling_price.getText());
                 replacement.setBarcode(barcode);
                 replacement.setDescription(description);
                 replacement.setItem_code(item_code);
@@ -4187,13 +4236,13 @@ public class Dlg_services extends javax.swing.JDialog {
                 String item_code = tf_item_code.getText();
                 String barcode = tf_contact_no9.getText();
                 String description = tf_contact_no8.getText();
-                double qty = FitIn.toDouble(tf_contact_no10.getText());
+                double qty = FitIn.toDouble(tf_qty.getText());
                 if (qty <= 0) {
                     Alert.set(0, "Input Quantity");
-                    tf_contact_no10.grabFocus();
+                    tf_qty.grabFocus();
                     return;
                 }
-                double selling_price = FitIn.toDouble(tf_contact_no11.getText());
+                double selling_price = FitIn.toDouble(tf_selling_price.getText());
                 String date_added = replacement.date_added;
                 String user_name = replacement.user_name;
                 String category = replacement.category;
@@ -4247,8 +4296,8 @@ public class Dlg_services extends javax.swing.JDialog {
             tf_item_code.setText(replacement.item_code);
             tf_contact_no9.setText(replacement.barcode);
             tf_contact_no8.setText(replacement.description);
-            tf_contact_no10.setText(FitIn.fmt_woc(replacement.qty));
-            tf_contact_no11.setText(FitIn.fmt_wc_0(replacement.selling_price));
+            tf_qty.setText(FitIn.fmt_woc(replacement.qty));
+            tf_selling_price.setText(FitIn.fmt_wc_0(replacement.selling_price));
         }
         if (col == 5) {
             if (replacement.id == 0) {
@@ -4282,8 +4331,8 @@ public class Dlg_services extends javax.swing.JDialog {
         tf_item_code.setText("");
         tf_contact_no9.setText("");
         tf_contact_no8.setText("");
-        tf_contact_no10.setText("");
-        tf_contact_no11.setText("");
+        tf_qty.setText("");
+        tf_selling_price.setText("");
         tbl_my_services_item_replacements_customers.clearSelection();
         tf_item_code.grabFocus();
     }
@@ -4853,4 +4902,90 @@ public class Dlg_services extends javax.swing.JDialog {
         });
     }
 
+    private void ret_transfered_items() {
+        Field.Combo br = (Field.Combo) tf_to_branch;
+        Field.Combo loc = (Field.Combo) tf_to_location;
+
+        if (br.getText().isEmpty() || loc.getText().isEmpty()) {
+            Alert.set(0, "Please select a location!");
+            return;
+        }
+        if (tf_service_slip_no.getText().isEmpty()) {
+            Alert.set(0, "Input a slip number!");
+            return;
+        }
+
+        int row2 = tbl_my_services.getSelectedRow();
+        My_services.to_my_services service = (My_services.to_my_services) tbl_my_services_ALM.get(row2);
+
+        if (service.status > 1) {
+            Alert.set(0, "Cannot proceed! Transaction already finalized");
+            return;
+        }
+        Window p = (Window) this;
+        Dlg_my_services_search_transferred_items nd = Dlg_my_services_search_transferred_items.create(p, true);
+        nd.setTitle("");
+        nd.do_pass(br.getText(), br.getId(), loc.getText(), loc.getId(), tf_service_slip_no.getText());
+        nd.setCallback(new Dlg_my_services_search_transferred_items.Callback() {
+
+            @Override
+            public void ok(CloseDialog closeDialog, Dlg_my_services_search_transferred_items.OutputData data) {
+                closeDialog.ok();
+
+                List<Stock_transfers_items.to_stock_transfers_items> items = data.datas;
+                for (Stock_transfers_items.to_stock_transfers_items item : items) {
+                    int id = 0;
+                    String transaction_no = service.transaction_no;
+                    String customer_id = service.customer_id;
+                    String customer_name = service.customer_name;
+                    String item_code = item.barcode;
+                    String barcode = item.barcodes;
+                    String description = item.description;
+                    double qty = item.product_qty;
+
+                    double selling_price = item.selling_price;
+                    String date_added = DateType.now();
+                    String user_name = service.added_by;
+                    String category = item.category;
+                    String category_id = item.category_id;
+                    String classification = item.classification;
+                    String classification_id = item.classification_id;
+                    String sub_classification = item.sub_classification;
+                    String sub_classification_id = item.sub_classification_id;
+                    String unit = item.unit;
+                    double conversion = item.conversion;
+                    String item_type = item.item_type;
+                    int status = 0;
+                    String supplier = item.supplier;
+                    int fixed_price = item.fixed_price;
+                    String supplier_id = item.supplier;
+                    int multi_level_pricing = item.multi_level_pricing;
+                    int vatable = item.vatable;
+                    double reorder_level = item.reorder_level;
+                    double markup = item.markup;
+                    String brand = item.brand;
+                    String brand_id = item.brand_id;
+                    String model = item.model;
+                    String model_id = item.model_id;
+                    String selling_type = "" + item.selling_type;
+                    String branch = item.to_branch;
+                    String branch_code = item.to_branch_id;
+                    String location = item.to_location;
+                    String location_id = item.to_location_id;
+                    String serial_no = "";
+                    String user_id = service.user_id;
+                    String user_screen_name = service.user_screen_name;
+                    My_services_item_replacements_customers.to_my_services_item_replacements_customers replacement = new to_my_services_item_replacements_customers(id, transaction_no, customer_id, customer_name, item_code, barcode, description, qty, selling_price, date_added, user_name, category, category_id, classification, classification_id, sub_classification, sub_classification_id, unit, conversion, item_type, status, supplier, fixed_price, supplier_id, multi_level_pricing, vatable, reorder_level, markup, brand, brand_id, model, model_id, selling_type, branch, branch_code, location, location_id, serial_no, user_id, user_screen_name);
+                    List<My_services_item_replacements_customers.to_my_services_item_replacements_customers> datas = new ArrayList();
+                    datas.add(replacement);
+                    My_services_item_replacements_customers.add_data(datas);
+
+                }
+                ret_my_services_item_replacements_customers();
+                Alert.set(1, "");
+            }
+        });
+        nd.setLocationRelativeTo(this);
+        nd.setVisible(true);
+    }
 }

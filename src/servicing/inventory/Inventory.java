@@ -3019,7 +3019,7 @@ public class Inventory {
                 int vatable = rs.getInt(24);
                 double reorder_level = rs.getDouble(25);
                 double markup = rs.getDouble(26);
-                String barcodes = rs.getString(27);
+                String main_barcode = rs.getString(27);
                 String brand = rs.getString(28);
                 String brand_id = rs.getString(29);
                 String model = rs.getString(30);
@@ -3034,7 +3034,7 @@ public class Inventory {
                 int allow_negative_inventory = rs.getInt(38);
                 int auto_order = rs.getInt(39);
                 int show_to_sales = rs.getInt(40);
-                to_inventory to = new to_inventory(id, barcode, description, generic_name, category, category_id, classification, classification_id, sub_classification, sub_classification_id, product_qty, unit, conversion, selling_price, date_added, user_name, item_type, status, supplier, fixed_price, cost, supplier_id, multi_level_pricing, vatable, reorder_level, markup, barcodes, brand, brand_id, model, model_id, selling_type, branch, branch_code, location, location_id, false, is_uploaded, allow_negative_inventory, auto_order, show_to_sales);
+                to_inventory to = new to_inventory(id, main_barcode, description, generic_name, category, category_id, classification, classification_id, sub_classification, sub_classification_id, product_qty, unit, conversion, selling_price, date_added, user_name, item_type, status, supplier, fixed_price, cost, supplier_id, multi_level_pricing, vatable, reorder_level, markup, barcode, brand, brand_id, model, model_id, selling_type, branch, branch_code, location, location_id, false, is_uploaded, allow_negative_inventory, auto_order, show_to_sales);
                 datas.add(to);
             }
             return datas;

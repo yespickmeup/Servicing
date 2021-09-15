@@ -951,7 +951,7 @@ public class Stock_transfers {
                 PreparedStatement stmt13 = conn.prepareStatement("");
                 for (Stock_transfers_items.to_stock_transfers_items to : datas) {
                     int id = 0;
-                    String transaction_no = to_stock_transfers.transaction_no;
+                    String transaction_no = to_stock_transfers.service_trans_no;
                     String item_code = to.barcode;
                     String barcode = to.barcodes;
                     String description = to.description;
